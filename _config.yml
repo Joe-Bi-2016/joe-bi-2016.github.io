@@ -21,7 +21,7 @@ repository               : "Joe-Bi-2016/joe-bi-2016.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
+  avatar           : "profile.png"
   name             : "bishengwang"
   pronouns         : # example: "she/her"  
   bio              : "思考是能量与信息的转化，信息是灵魂的外在形式，文字是信息的载体。记录信息•记录生活•让灵魂与宇宙同在！"
