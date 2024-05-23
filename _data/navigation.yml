@@ -1,22 +1,22 @@
 # main links links
 main:
-  - title: "Publications"
+  - title: "Graphics"
     url: /publications/
 
-  - title: "Talks"
+  - title: "CUDA/OpenCL"
     url: /talks/    
 
-  - title: "Teaching"
+  - title: "System"
     url: /teaching/    
     
-  - title: "Portfolio"
+  - title: "Algorithm"
     url: /portfolio/
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
-  - title: "CV"
+
+  - title: "C/C++"
     url: /cv/
+    
+  - title: "Blog"
+    url: /year-archive/
     
   - title: "Guide"
     url: /markdown/
