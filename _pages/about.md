@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "思考是能量与信息的转化，信息是灵魂的外在形式，文字是信息的载体。记录信息•记录生活•让灵魂永恒！"
+title: ""
 author_profile: true
 redirect_from: 
   - /about/
