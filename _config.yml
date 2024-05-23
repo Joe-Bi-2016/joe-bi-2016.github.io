@@ -26,7 +26,7 @@ author:
   pronouns         : # example: "she/her"  
   bio              : "记录思考与生活，让灵魂与宇宙同在"
   location         : "Earth"
-  employer         : "Red Brick University"
+  employer         : #"Red Brick University"
   uri              : # URL
   email            : "xinkong886@163.com" 
 
@@ -43,7 +43,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "https://github.com/Joe-Bi-2016/"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
