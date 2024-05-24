@@ -1,6 +1,6 @@
 ---
 layout: archive
 title: "Parallel Computing"
-permalink: /talks/
+permalink: /parallel-computing/
 author_profile: true
 ---

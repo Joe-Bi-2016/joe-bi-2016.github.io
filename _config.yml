@@ -209,7 +209,7 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:path/
-  talks:
+  parallel-computing:
     output: true
     permalink: /:collection/:path/
 
@@ -261,10 +261,10 @@ defaults:
       author_profile: true
       share: true
       comment: true
-  # _talks
+  # _parallel-computing
   - scope:
       path: ""
-      type: talks
+      type: parallel-computing
     values:
       layout: talk
       author_profile: true
