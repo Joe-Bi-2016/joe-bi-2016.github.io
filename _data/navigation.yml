@@ -4,19 +4,19 @@ main:
     url: /publications/
 
   - title: "CUDA/OpenCL"
-    url: /parallel-computing/    
+    url: /talks/    
 
   - title: "System"
-    url: /system/    
+    url: /teaching/    
     
   - title: "Algorithm"
-    url: /algorithm/
+    url: /portfolio/
 
   - title: "C/C++"
-    url: /c-c++/
+    url: /cv/
     
   - title: "Blog"
-    url: /blog/
+    url: /year-archive/
     
   - title: "Guide"
     url: /markdown/
