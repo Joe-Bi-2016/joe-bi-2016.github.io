@@ -1,5 +1,5 @@
 ---
-title: "Page Not Found"
+title: "Blog"
 sitemap: false
 permalink: /404.html
 ---
