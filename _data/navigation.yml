@@ -16,7 +16,7 @@ main:
     url: /c-c++/
     
   - title: "Blog"
-    url: /year-archive/
+    url: /blog/
     
   - title: "Guide"
-    url: /markdown/
+    url: /guide/
