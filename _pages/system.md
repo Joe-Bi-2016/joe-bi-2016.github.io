@@ -1,7 +1,6 @@
 ---
+layout: archive
 title: "Operating System"
-sitemap: false
-permalink: /404.html
+permalink: /system/
+author_profile: true
 ---
-
-Sorry, but the page you were trying to view does not exist.

@@ -10,7 +10,7 @@ main:
     url: /system/    
     
   - title: "Algorithm"
-    url: /portfolio/
+    url: /algorithm/
 
   - title: "C/C++"
     url: /cv/

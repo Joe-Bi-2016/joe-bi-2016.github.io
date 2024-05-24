@@ -206,7 +206,7 @@ collections:
   graphics:
     output: true
     permalink: /:collection/:path/
-  portfolio:
+  algorithm:
     output: true
     permalink: /:collection/:path/
   parallel-computing:
@@ -252,10 +252,10 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
+  # _algorithm
   - scope:
       path: ""
-      type: portfolio
+      type: algorithm
     values:
       layout: single
       author_profile: true
