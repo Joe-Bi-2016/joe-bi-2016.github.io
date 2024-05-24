@@ -1,7 +1,7 @@
 ---
 layout: archive
 title: "Graphics"
-permalink: /publications/
+permalink: /graphics/
 author_profile: true
 ---
 
@@ -11,6 +11,6 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.publications reversed %}
+{% for post in site.graphics reversed %}
   {% include archive-single.html %}
 {% endfor %}
