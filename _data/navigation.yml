@@ -1,7 +1,7 @@
 # main links links
 main:
   - title: "Graphics"
-    url: /publications/
+    url: /graphics/
 
   - title: "CUDA/OpenCL"
     url: /talks/    
