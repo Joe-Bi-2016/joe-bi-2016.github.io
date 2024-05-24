@@ -200,7 +200,7 @@ kramdown:
 
 # Collections
 collections:
-  teaching:
+  system:
     output: true
     permalink: /:collection/:path/
   graphics:
@@ -234,10 +234,10 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
+  # _system
   - scope:
       path: ""
-      type: teaching
+      type: system
     values:
       layout: single
       author_profile: true
