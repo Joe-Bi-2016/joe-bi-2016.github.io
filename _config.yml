@@ -200,20 +200,33 @@ kramdown:
 
 # Collections
 collections:
-  system:
-    output: true
-    permalink: /:collection/:path/
   graphics:
-    output: true
-    permalink: /:collection/:path/
-  algorithm:
     output: true
     permalink: /:collection/:path/
   parallel-computing:
     output: true
     permalink: /:collection/:path/
-
-
+  ai:
+    output: true
+    permalink: /:collection/:path/
+  system:
+    output: true
+    permalink: /:collection/:path/
+  algorithm:
+    output: true
+    permalink: /:collection/:path/
+  c-c++:
+    output: true
+    permalink: /:collection/:path/
+  math:
+    output: true
+    permalink: /:collection/:path/
+  guide:
+    output: true
+    permalink: /:collection/:path/
+  blog:
+    output: true
+    permalink: /:collection/:path/    
 # Defaults
 defaults:
   # _posts
@@ -234,19 +247,36 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _system
+  # _graphics
   - scope:
       path: ""
-      type: system
+      type: graphics
     values:
       layout: single
       author_profile: true
       share: true
       comments: true
-  # _graphics
+  # _parallel-computing
   - scope:
       path: ""
-      type: graphics
+      type: parallel-computing
+    values:
+      layout: single
+      author_profile: true
+      share: true
+  # _ai
+  - scope:
+      path: ""
+      type: ai
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true    
+  # _system
+  - scope:
+      path: ""
+      type: system
     values:
       layout: single
       author_profile: true
@@ -261,14 +291,42 @@ defaults:
       author_profile: true
       share: true
       comment: true
-  # _parallel-computing
+  # _c-c++
   - scope:
       path: ""
-      type: parallel-computing
+      type: c-c++
     values:
-      layout: talk
+      layout: single
       author_profile: true
       share: true
+      comments: true
+  # _math
+  - scope:
+      path: ""
+      type: math
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # _guide
+  - scope:
+      path: ""
+      type: guide
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true      
+  # _blog
+  - scope:
+      path: ""
+      type: blog
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true     
 
 
 # Sass/SCSS

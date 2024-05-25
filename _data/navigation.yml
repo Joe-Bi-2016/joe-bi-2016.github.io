@@ -6,17 +6,23 @@ main:
   - title: "CUDA/OpenCL"
     url: /parallel-computing/    
 
+  - title: "AI"
+    url: /ai/
+    
   - title: "System"
     url: /system/    
     
   - title: "Algorithm"
-    url: /algorithm/
+    url: /algorithm/     
 
   - title: "C/C++"
     url: /c-c++/
     
-  - title: "Blog"
-    url: /blog/
+  - title: "Math"
+    url: /math/    
     
-  - title: "Guide"
+  - title: "哲学"
     url: /guide/
+    
+  - title: "blog/"
+    url: /blog/
