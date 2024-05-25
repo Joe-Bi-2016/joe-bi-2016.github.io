@@ -24,5 +24,5 @@ main:
   - title: "哲学"
     url: /guide/
     
-  - title: "blog/"
+  - title: "blog"
     url: /blog/
