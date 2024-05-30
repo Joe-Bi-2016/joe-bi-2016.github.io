@@ -8,6 +8,6 @@ redirect_from:
 ---
 
 <div  align="center">
-<img src="images/2021492663.png" width="150%" height="80%"/>
+<img src="images/2021492663.png" width="150%" height="50%"/>
 </div>
 
