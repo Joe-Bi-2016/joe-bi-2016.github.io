@@ -4,7 +4,7 @@ collection: algorithm
 permalink: /algorithm/algorithm-01
 excerpt: ' '
 date: 2024-05-30
-citation: 'Joe-Bi. (2024). &quot;回逆算法的灵活运用.&quot; <i>GitHub Joe-Bi of Bugs</i>. 1(3).'
+citation: 'Joe-Bi. (2024). &quot;回逆算法的灵活运用.&quot; <i>GitHub Joe-Bi of Bugs</i>'
 ---
 
 
