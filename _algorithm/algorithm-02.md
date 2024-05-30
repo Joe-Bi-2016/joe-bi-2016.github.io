@@ -1,7 +1,7 @@
----
+﻿---
 title: "回逆算法思想的迁移"
 collection: algorithm
-permalink: /algorithm/blog01
+permalink: /algorithm/algorithm-02
 ---
 
 
