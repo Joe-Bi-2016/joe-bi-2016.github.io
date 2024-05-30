@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Inverse algorithm 02"
 collection: algorithm
 permalink: /algorithm/algorithm-02
