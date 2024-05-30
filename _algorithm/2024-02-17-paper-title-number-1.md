@@ -1,7 +1,7 @@
 ﻿---
 title: "回逆算法思想的迁移"
 collection: algorithm
-permalink: /algorithm/2024-05-30-algorithm-01
+permalink: /algorithm/2024-02-17-paper-title-number-1
 excerpt: ''
 date: 2024-05-30
 venue: ''
