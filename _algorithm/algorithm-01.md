@@ -1,5 +1,5 @@
 ---
-title: "Inverse algorithm"
+title: "Inverse algorithm 01"
 collection: algorithm
 permalink: /algorithm/algorithm-01
 date: 2024-05-30
