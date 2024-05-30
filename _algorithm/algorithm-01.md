@@ -2,8 +2,9 @@
 title: "Inverse algorithm"
 collection: algorithm
 permalink: /algorithm/algorithm-01
-date:2024-05-30
+date: 2024-05-30
 ---
+
 
 
 来看看这道题， 三数之和，问题描述：
