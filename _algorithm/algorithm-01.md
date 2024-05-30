@@ -9,10 +9,10 @@ citation: 'Joe-Bi. (2024). &quot;回逆算法的灵活运用.&quot; <i>GitHub Jo
 
 
 
-来看看这道题， 三数之和，问题描述：
+来看看这道题[leetcode15题](leetcode:https://leetcode.cn/problems/3sum/description/)， 三数之和，问题描述：
 
 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0
-[leetcode15题]<leetcode:https://leetcode.cn/problems/3sum/description/>
+
 
 三数之和问题可以使用多种策略来解决，包括基于排序与双指针的方法。这里我将解释如何采用回逆的思想来解决这个问题来达到算法思想的迁移解决问题。
 
