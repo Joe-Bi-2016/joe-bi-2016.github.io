@@ -6,4 +6,5 @@ redirect_from:
   - /about/
   - /about.html
 ---
+![@](images/2021492663.png)
 
