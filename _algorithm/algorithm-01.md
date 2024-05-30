@@ -1,5 +1,5 @@
 ---
-title: "Inverse algorithm 01"
+title: "回逆算法的思考"
 collection: algorithm
 permalink: /algorithm/algorithm-01
 date: 2024-05-30
@@ -107,4 +107,5 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 ## 总结
 
 通过排序、回溯、剪枝和跳过重复数字等技巧，我们可以有效地解决“三数之和”问题。这种回逆实现思路不仅适用于此问题，还可以扩展到其他类似的组合搜索问题中。
+它非常适合这种从全局到局部，逐渐缩小范围的这种解决思想，与动态规划恰恰相反，每一步都是局部最优解来获取最终解。
 在实际应用中，我们可以根据问题的具体需求进行调整。
