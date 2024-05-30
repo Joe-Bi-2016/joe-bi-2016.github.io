@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Algorithm"
+title: ""
 permalink: /algorithm/
 author_profile: true
 ---
