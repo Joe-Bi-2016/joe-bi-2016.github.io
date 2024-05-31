@@ -1,5 +1,5 @@
 ---
-title: "About Me"
+title: ""
 permalink: /
 author_profile: true
 redirect_from: 
@@ -11,4 +11,4 @@ redirect_from:
 <img src="images/2021492663.png" width="150%" height="30%" alt="AltText"/>
 </div>
 
-
+# About Me
