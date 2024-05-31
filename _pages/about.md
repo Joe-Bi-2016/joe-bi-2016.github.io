@@ -1,4 +1,9 @@
+<div  align="center">
+<img src="images/2021492663.png" width="150%" height="30%" alt="AltText"/>
+</div>
+
 ---
+title: "About me"
 permalink: /
 author_profile: true
 redirect_from: 
@@ -6,8 +11,5 @@ redirect_from:
   - /about.html
 ---
 
-<div  align="center">
-<img src="images/2021492663.png" width="150%" height="30%" alt="AltText"/>
-</div>
 
-title: "About Me"
+
