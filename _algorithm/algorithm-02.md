@@ -1,5 +1,5 @@
 ---
-title: "你真的懂KMP算法吗"
+title: "你真的理解KMP算法吗"
 collection: algorithm
 permalink: /algorithm/algorithm-01
 excerpt: ' '
