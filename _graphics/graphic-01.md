@@ -20,7 +20,7 @@ OpenXR loader, validation layers的实现源码代码库 [https://github.com/Khr
 标准OpenXR Runtime实现代码库 [https://gitlab.freedesktop.org/monado/monado](https://gitlab.freedesktop.org/monado/monado)
 
 ## OpenXR文档
-openxr specification: [https://registry.khronos.org/OpenXR/specs/1.0/loader.html#Overview](https://registry.khronos.org/OpenXR/specs/1.0/loader.html#Overview)
+openxr specification: [https://registry.khronos.org/OpenXR/](https://registry.khronos.org/OpenXR/)
 
 ## OpenXR --- Application Loader Runtime三者的关系
 
