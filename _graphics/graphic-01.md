@@ -25,14 +25,14 @@ openxr specification: https://registry.khronos.org/OpenXR/specs/1.0/loader.html#
 ## OpenXR --- Application Loader Runtime三者的关系
 
 <div  align="center">
-<img src="images/openxrloader.png" width="100%" height="100%" alt="AltText"/>
+<img src="images/openxrloader.png" width="100%" height="100%"/>
 </div>
 <br /> 
 
 ## hello_xr整体架构
 
 <div  align="center">
-<img src="images/drawio-helloxr.png" width="100%" height="100%" alt="AltText"/>
+<img src="images/drawio-helloxr.png" width="100%" height="100%"/>
 </div>
 
 <font face="黑体" size=4>main主进程：</font>安卓NativeActivity主入口，用于加载OpenXR Runtime，创建平台相关对象（platformplugin_android），图形渲染库（graphicsplugin_opengles）
