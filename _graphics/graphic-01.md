@@ -11,16 +11,16 @@ citation: 'Joe-Bi. (2024). &quot;OpenXR之helloxr.&quot; <i>GitHub Joe-Bi of Bug
 ## OpenXR涉及到三个源码工程
 ### OpenXR-SDK-Source
 包含hello_xr源码，双目立方体绘制
-OpenXR loader, validation layers的实现源码代码库 https://github.com/KhronosGroup/OpenXR-SDK-Source
+OpenXR loader, validation layers的实现源码代码库 [https://github.com/KhronosGroup/OpenXR-SDK-Source](https://github.com/KhronosGroup/OpenXR-SDK-Source)
 
 ### openxr-android-broker
-安卓版本用于发现和管理多个Runtime代码库 https://gitlab.freedesktop.org/monado/utilities/openxr-android-broker
+安卓版本用于发现和管理多个Runtime代码库 [https://gitlab.freedesktop.org/monado/utilities/openxr-android-broker](https://gitlab.freedesktop.org/monado/utilities/openxr-android-broker)
 
 ### monado
-标准OpenXR Runtime实现代码库 https://gitlab.freedesktop.org/monado/monado
+标准OpenXR Runtime实现代码库 [https://gitlab.freedesktop.org/monado/monado](https://gitlab.freedesktop.org/monado/monado)
 
 ## OpenXR文档
-openxr specification: https://registry.khronos.org/OpenXR/specs/1.0/loader.html#Overview
+openxr specification: [https://registry.khronos.org/OpenXR/specs/1.0/loader.html#Overview](https://registry.khronos.org/OpenXR/specs/1.0/loader.html#Overview)
 
 ## OpenXR --- Application Loader Runtime三者的关系
 
