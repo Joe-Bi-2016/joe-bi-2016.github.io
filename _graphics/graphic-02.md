@@ -24,6 +24,7 @@ openXR的开源实现runtime monado采用vulkan作为后台绘制，下图是从
 <div  align="center">
 <img src="../images/vkimage-drawio.png"/>
 </div>
+</br>
 
 创建进程唯一的XR资源句柄（指针）XrInstance，通过XrInstance在runtime层可以找到所有其它对象。Instance创建过程涉及两大核心模块创建：
 
@@ -31,14 +32,7 @@ openXR的开源实现runtime monado采用vulkan作为后台绘制，下图是从
 
 <font face="黑体" size=5>设备系统模块（xrt_system_devices）：</font>持有所有设备对象，由Prober模块负责发现，加载
 
-## 主要类：
-<font face="黑体" size=5>multi_system_devices: </font>合成器系统的具体实现者，runtime重要模块之一，持有主合成器对象和所有client连接实例,管理主合成器渲染线程
-
-<font face="黑体" size=5>comp_compositor: </font>主合成器，使用vulkan渲染，负责基础内容绘制和client提交的layer合成绘制，distortion等算法在此完成
-
-<font face="黑体" size=5>multi_compositor：</font>与vk通信，通过HardwareBuffer共享纹理给client端使用，并负责client layer提交给主合成器合并渲染
-
-<font face="黑体" size=5>xrt_compositor：</font>所有compositor（native和非native类型）基类，与XrSession相同生命周期
+## 主要组件功能
 
 合成器系统multi_system_compositor持有主合成器comp_compositor，用于runtime渲染，采用vulkan，并监听client链接，提交client layer数据到主合成器“逐层”合并渲染，并最终呈现
 
@@ -67,3 +61,14 @@ openXR的开源实现runtime monado采用vulkan作为后台绘制，下图是从
 
 <font face="黑体" size=5>comp_render comp_util</font>  
 vulkan渲染资源和繁琐对象设置
+
+## 主要类
+<font face="黑体" size=5>multi_system_devices: </font>合成器系统的具体实现者，runtime重要模块之一，持有主合成器对象和所有client连接实例,管理主合成器渲染线程
+
+<font face="黑体" size=5>comp_compositor: </font>主合成器，使用vulkan渲染，负责基础内容绘制和client提交的layer合成绘制，distortion等算法在此完成
+
+<font face="黑体" size=5>multi_compositor：</font>与vk通信，通过HardwareBuffer共享纹理给client端使用，并负责client layer提交给主合成器合并渲染
+
+<font face="黑体" size=5>xrt_compositor：</font>所有compositor（native和非native类型）基类，与XrSession相同生命周期
+
+
