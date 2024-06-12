@@ -24,7 +24,7 @@ openXR的开源实现runtime monado采用vulkan作为后台绘制，下图是从
 <div  align="center">
 <img src="../images/vkimage-drawio.png"/>
 </div>
-</br>
+<br />
 
 创建进程唯一的XR资源句柄（指针）XrInstance，通过XrInstance在runtime层可以找到所有其它对象。Instance创建过程涉及两大核心模块创建：
 
