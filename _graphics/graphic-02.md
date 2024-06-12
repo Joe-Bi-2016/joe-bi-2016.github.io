@@ -72,3 +72,7 @@ vulkan渲染资源和繁琐对象设置
 <font face="黑体" size=5>xrt_compositor：</font>所有compositor（native和非native类型）基类，与XrSession相同生命周期
 
 
+<font face="黑体" size=6>附录</font>  
+[基于 HardwareBuffer 实现 Android 多进程渲染](https://robot9.me/hardwarebuffer-multi-process-rendering/)
+
+
