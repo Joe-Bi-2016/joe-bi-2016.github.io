@@ -1,0 +1,77 @@
+---
+title: "Monado Out of Process的启动连接流程"
+collection: graphics
+permalink: /graphics/graphic-03
+excerpt: ' '
+date: 2024-06-13
+citation: 'Joe-Bi. (2024). &quot;OpenXR之helloxr.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+---
+   
+
+monado out of process模式在android上的启动连接流程，采用的是AIDL方式进行创建后台runtime server的，采用SocketPair进行pipe通信。
+
+涉及面较广，包含java和ndk两个层面的内容。
+
+java文件路径：monado\src\xrt\ipc\android\src\main\java\org\freedesktop\monado\ipc
+
+## 从apk启动runtime server的主要流程
+
+
+<div  align="center">
+<img src="../images/outprocess-server-drawio.png"/>
+</div>
+<br />
+<font face="黑体" size=6>ipc_server_main_android分析</font>   
+
+1. 创建struct ipc_server s，并将其返回给应用层使用；  
+2. init_all(s)中创建了server端多个重要组件和回调函数设置：
+    xrt_instance xinst: xrt_instance_create(),这是调用<font face="黑体" color="red" size=3>target_instance.c</font>中的函数创建的；  
+    xrt_system: xrt_instance_create_system--->t_instance_create_system，创建了系统合成器system compositor，并且设置了compositor base的相关函数---vk swapchian的创建等;  
+    shared memory:init_shm(s)传递数据的共享内存块；  
+    ipc_server_mainloop_init()：pipe的创建以及初始化设置；  
+3. main_loop()：循环调用ipc_server_mainloop_poll，在pipe上轮询看是否有client连接上来，以作进一步的处理，最终的进到ipc_dispatch()中进行消息的处理；  
+
+
+## client端从java层到连接runtime server的流程
+
+<div  align="center">
+<img src="../images/client-to-server-drawio.png"/>
+</div>
+<br />
+有了上面的runtime server启动分析过程，client端连接到server端非常清晰
+
+## server端如何创建VkSurfaceKHR的过程
+
+<div  align="center">
+<img src="../images/Surface-2-VkSurfaceKHR-drawio.png"/>
+</div>
+<br />
+server端创建VkSurfaceKHR是通过将java层创建的surface通过pipe管道，传递给server端，在server端最终调用vkCreateAndroidSurfaceKHR来创建的，具体的过程如图所示。
+
+## swap_chain的创建到EGLImage的过程
+
+<div  align="center">
+<img src="../images/create-swapchain-drawio.png"/>
+</div>
+<br />
+swap_chain的创建是在session中创建的，流程比较复杂。  
+从vk swap_chian中创建的VkSurfaceKHR将其转换为AHardwareBuffer，再从AHardwareBuffer创建EGLImage，涉及到挺多的文件： 
+monado\src\xrt\ipc\android\src\main\java\org\
+freedesktop\monado\ipc\Client.java 
+monado\src\xrt\ipc\android\src\main\java\org\
+freedesktop\monado\ipc\MonadoImpl.java
+monado\src\xrt\targets\service-lib\service_target.cpp
+monado\src\xrt\ipc\server\ipc_server_process.c
+monado\src\xrt\targets\common\target_instance.c
+monado\src\xrt\compositor\main\comp_compositor.c
+monado\src\xrt\compositor\main\comp_window_android.c
+monado\src\xrt\compositor\client\comp_egl_client.c
+monado\src\xrt\compositor\client\comp_gl_eglimage_swapchain.c
+
+这里提供了从AHardwareBuffer创建EGLImage到纹理等相关函数
+
+
+<font face="黑体" size=5>参考</font>  
+[Monado Out of Process流程分析](http://dogee.tech/2022-04-10_Moando%20Out%20of%20Process%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.html)
+
+

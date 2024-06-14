@@ -1,0 +1,165 @@
+<mxfile host="app.diagrams.net" modified="2024-06-14T11:48:24.203Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="OrEriUUx4zFdcwA_9eu4" version="24.5.4" type="device">
+  <diagram name="第 1 页" id="AAamVNHAt-Iz7BKqVNvt">
+    <mxGraphModel dx="1120" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nCw6ji7hn8t8J34CI48--5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nCw6ji7hn8t8J34CI48--1" target="nCw6ji7hn8t8J34CI48--2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--1" value="monado/src/xrt/state_trackers/oxr/oxr_api_instance.c&lt;div&gt;oxr_xrCreateInstance()&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="20" y="40" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nCw6ji7hn8t8J34CI48--2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="505" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--2" value="monado/src/xrt/state_trackers/oxr/oxr_instance.c&lt;div&gt;oxr_instance_create()&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="360" y="40" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nCw6ji7hn8t8J34CI48--4" target="nCw6ji7hn8t8J34CI48--10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--4" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="360" y="140" width="290" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--8" value="xrt_prober_create_with_lists()//创建prober对象，initialize()设置prober回调接口，绑定target_lists数组中指定的探测相关函数&lt;div&gt;t_instance_create_system()//设置回调接口&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+          <mxGeometry x="375" y="190" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--9" value="monado/src/xrt/targets/common/target_instance.c&lt;div&gt;xrt_instance_create()&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="473" y="160" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nCw6ji7hn8t8J34CI48--10" target="nCw6ji7hn8t8J34CI48--12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--10" value="monado/src/xrt/state_trackers/oxr/oxr_instance.c&lt;div&gt;oxr_instance_create() ---&amp;gt;&amp;nbsp;xrt_instance_create_system()&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="20" y="190" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nCw6ji7hn8t8J34CI48--12" target="nCw6ji7hn8t8J34CI48--18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--12" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="20" y="319" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--13" value="&lt;div&gt;u_system_devices_create_from_prober()&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+          <mxGeometry x="32" y="369" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--17" value="monado/src/xrt/targets/common/target_instance.c&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;t_instance_create_system()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="135" y="339" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nCw6ji7hn8t8J34CI48--18" target="nCw6ji7hn8t8J34CI48--26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--18" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="360" y="319" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--19" value="&lt;div&gt;xrt_prober_create_system()&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+          <mxGeometry x="375" y="369" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--20" value="monado/src/xrt/auxiliary/util/u_system_helpers.c&lt;br&gt;&lt;div&gt;u_system_devices_create_from_prober()&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="475" y="340" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--26" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="360" y="464" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--27" value="&lt;div&gt;这里创建主合成器系统对象，设置相关回调接口&lt;/div&gt;&lt;div&gt;comp_main_create_system_compositor()&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+          <mxGeometry x="377" y="520" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--28" value="monado/src/xrt/targets/common/target_instance.c&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;t_instance_create_system()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="473" y="490" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--31" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="20" y="463" width="290" height="266" as="geometry" />
+        </mxCell>
+        <UserObject label="struct comp_compositor *c = U_TYPED_CALLOC(struct comp_compositor);&lt;br&gt;c-&amp;gt;base.base.base.begin_session = compositor_begin_session;&lt;div&gt;.....&lt;/div&gt;&lt;div&gt;c-&amp;gt;base.base.base.begin_frame = compositor_begin_frame;&lt;br&gt;&lt;/div&gt;&lt;div&gt;c-&amp;gt;base.base.base.poll_events = compositor_poll_events;&lt;br&gt;&lt;/div&gt;&lt;div&gt;comp_base_init(&amp;amp;c-&amp;gt;base); // 设置swapchain等相关接口&lt;br&gt;&lt;/div&gt;&lt;div&gt;......&lt;/div&gt;&lt;div&gt;comp_multi_create_system_compositor()&lt;br&gt;&lt;/div&gt;" link="struct comp_compositor *c = U_TYPED_CALLOC(struct comp_compositor);&#xa;&#xa;&#xa;c-&gt;base.base.base.begin_session = compositor_begin_session;" id="nCw6ji7hn8t8J34CI48--32">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+            <mxGeometry x="28" y="520" width="272" height="190" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="nCw6ji7hn8t8J34CI48--33" value="monado/src/xrt/compositor/main/comp_compositor.c&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;com_main_create_system_compositor()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="133" y="490" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.997;entryY=0.211;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="nCw6ji7hn8t8J34CI48--26" target="nCw6ji7hn8t8J34CI48--31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nCw6ji7hn8t8J34CI48--35" target="nCw6ji7hn8t8J34CI48--41" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--35" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="350" y="607" width="320" height="218" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div&gt;struct multi_system_compositor *msc = U_TYPED_CALLOC(struct multi_system_compositor);&lt;br&gt;&lt;/div&gt;&lt;div&gt;......&lt;/div&gt;&lt;div&gt;msc-&amp;gt;base.create_native_compositor = system_compositor_create_native_compositor;&lt;br&gt;&lt;/div&gt;&lt;div&gt;......&lt;/div&gt;" link="struct comp_compositor *c = U_TYPED_CALLOC(struct comp_compositor);&#xa;&#xa;&#xa;c-&gt;base.base.base.begin_session = compositor_begin_session;" id="nCw6ji7hn8t8J34CI48--36">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+            <mxGeometry x="383" y="670" width="260" height="130" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="nCw6ji7hn8t8J34CI48--37" value="monado/src/xrt/compositor/multi/comp_multi_compositor.c&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;comp_multi_create_system_compositor()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="486" y="629" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.009;entryY=0.651;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nCw6ji7hn8t8J34CI48--31" target="nCw6ji7hn8t8J34CI48--35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nCw6ji7hn8t8J34CI48--41" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
+          <mxGeometry x="170" y="852" width="320" height="218" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div&gt;struct multi_system_compositor *msc = U_TYPED_CALLOC(struct multi_system_compositor);&lt;br&gt;&lt;/div&gt;&lt;div&gt;......&lt;/div&gt;&lt;div&gt;msc-&amp;gt;base.create_native_compositor = system_compositor_create_native_compositor;&lt;br&gt;&lt;/div&gt;&lt;div&gt;......&lt;/div&gt;" link="struct comp_compositor *c = U_TYPED_CALLOC(struct comp_compositor);&#xa;&#xa;&#xa;c-&gt;base.base.base.begin_session = compositor_begin_session;" id="nCw6ji7hn8t8J34CI48--42">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FF9933;" parent="1" vertex="1">
+            <mxGeometry x="204" y="915" width="260" height="130" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="nCw6ji7hn8t8J34CI48--43" value="monado/src/xrt/compositor/multi/comp_multi_system.c&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;comp_multi_create_system_compositor&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;()&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="307" y="874" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-1" value="main主程序" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="220" y="140" width="190" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="440" y="140" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-4" value="platformPlugin" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="285" y="155" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-5" value="Android平台特有扩展" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8000;" vertex="1" parent="1">
+          <mxGeometry x="230" y="190" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-6" value="xlib" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="230" y="260" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-7" value="xcb" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="330" y="260" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-8" value="wayland" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="230" y="320" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-9" value="win32" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="330" y="320" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-10" value="graphicsPlugin" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="510" y="155" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-11" value="opengles&lt;div&gt;GLES渲染资源&lt;/div&gt;&lt;div&gt;Runtime Swapchain&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8000;" vertex="1" parent="1">
+          <mxGeometry x="450" y="190" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-12" value="opengl&lt;div&gt;支持win32 xlib&lt;/div&gt;&lt;div&gt;xcb wayland&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="280" width="80" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-13" value="vulkan" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="550" y="280" width="80" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-14" value="OpenXrProgram&lt;div&gt;XR对象创建、交互事件对象创建、3D渲染管理创建&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="220" y="400" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-15" value="OpenXR Loader&lt;div&gt;Runtime加载器&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="220" y="480" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="juIJVGTfBp-kJvFPhFlG-16" value="OpenXR Runtime" style="rounded=1;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="220" y="559" width="420" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
