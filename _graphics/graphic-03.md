@@ -1,5 +1,5 @@
 ---
-title: "Monado Out of Process的启动连接流程"
+title: "Monado Out of Process流程分析"
 collection: graphics
 permalink: /graphics/graphic-03
 excerpt: ' '
@@ -48,14 +48,14 @@ java文件路径：monado\src\xrt\ipc\android\src\main\java\org\freedesktop\mona
 <br />
 server端创建VkSurfaceKHR是通过将java层创建的surface通过pipe管道，传递给server端，在server端最终调用vkCreateAndroidSurfaceKHR来创建的，具体的过程如图所示。
 
-## swap_chain的创建到EGLImage的过程
+## swap_chain的创建过程
 
 <div  align="center">
 <img src="../images/create-swapchain-drawio.png"/>
 </div>
 <br />
-swap_chain的创建是在session中创建的，流程比较复杂。  
-从vk swap_chian中创建的VkSurfaceKHR将其转换为AHardwareBuffer，再从AHardwareBuffer创建EGLImage，涉及到挺多的文件： 
+swap_chain的创建函数是在session中设定回调的，流程比较复杂。  
+<font face="黑体" color="red" size=5><b>它是在client端通过swapchain_allocator_create创建的，然后将句柄传递到server端</b></font>，过程非常复杂，涉及到非常多的文件： 
 monado\src\xrt\ipc\android\src\main\java\org\
 freedesktop\monado\ipc\Client.java 
 monado\src\xrt\ipc\android\src\main\java\org\
@@ -63,12 +63,11 @@ freedesktop\monado\ipc\MonadoImpl.java
 monado\src\xrt\targets\service-lib\service_target.cpp
 monado\src\xrt\ipc\server\ipc_server_process.c
 monado\src\xrt\targets\common\target_instance.c
-monado\src\xrt\compositor\main\comp_compositor.c
-monado\src\xrt\compositor\main\comp_window_android.c
-monado\src\xrt\compositor\client\comp_egl_client.c
-monado\src\xrt\compositor\client\comp_gl_eglimage_swapchain.c
-
-这里提供了从AHardwareBuffer创建EGLImage到纹理等相关函数
+monado\src\xrt\state_trackers\oxr\oxr_session_gfx_gles_android.c  monado\src\xrt\compositor\client\comp_egl_client.c
+monado\src\xrt\compositor\client\comp_gl_client.c  monado\src\xrt\ipc\client\ipc_client_compositor.c 
+ipc_client_generated.c  monado\src\xrt\ipc\shared\ipc_utils.c ipc_server_generated.c
+monado\src\xrt\compositor\multi\comp_multi_system.c  monado\src\xrt\compositor\multi\comp_multi_compositor.c monado\src\xrt\compositor\util\comp_base.c
+monado\src\xrt\compositor\util\comp_swapchain.c monado\src\xrt\auxiliary\vk\vk_image_allocator.c  monado\src\xrt\auxiliary\vk\vk_helpers.c
 
 
 <font face="黑体" size=5>参考</font>  
