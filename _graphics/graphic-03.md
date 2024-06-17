@@ -71,6 +71,6 @@ monado\src\xrt\compositor\util\comp_swapchain.c monado\src\xrt\auxiliary\vk\vk_i
 
 
 <font face="黑体" size=5>参考</font>  
-[Monado Out of Process流程分析](http://dogee.tech/2022-04-10_Moando%20Out%20of%20Process%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.html)
+[Monado Out of Process](http://dogee.tech/2022-04-10_Moando%20Out%20of%20Process%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.html)
 
 
