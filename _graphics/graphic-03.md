@@ -1,5 +1,5 @@
 ---
-title: "Monado Out of Process流程分析"
+title: "Monado Out of Process分析"
 collection: graphics
 permalink: /graphics/graphic-03
 excerpt: ' '
