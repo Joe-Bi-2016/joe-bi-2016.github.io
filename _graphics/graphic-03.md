@@ -48,26 +48,39 @@ java文件路径：monado\src\xrt\ipc\android\src\main\java\org\freedesktop\mona
 <br />
 server端创建VkSurfaceKHR是通过将java层创建的surface通过pipe管道，传递给server端，在server端最终调用vkCreateAndroidSurfaceKHR来创建的，具体的过程如图所示。
 
-## swap_chain的创建过程
+## swap_chain的创建到EGLImage的过程
 
 <div  align="center">
 <img src="../images/create-swapchain-drawio.png"/>
 </div>
 <br />
-swap_chain的创建是在session中设置回调接口的，流程比较复杂。  
-<font face="黑体" color="red" size=5><b>它是在client端通过swapchain_allocator_create创建的，然后将句柄传递到server端，</b></font>过程非常复杂，涉及到非常多的文件:   
+swap_chain的创建是在session中设置回调接口发起的，它在client端创建了image buffer，然后借助shared memory通过pipe管道通信传递到server端持有，然后又通过  
+eglGetNativeClientBufferANDROID(xscn->images[i].handle)拿到buffer创建EGLImage的,流程比较复杂。  
+<font face="黑体" color="red" size=5><b>在client端通过swapchain_allocator_create创建image buffer，然后将句柄handle传递到server端，</b></font>过程非常复杂，涉及到非常多的文件:   
 monado\src\xrt\ipc\android\src\main\java\org\
 freedesktop\monado\ipc\Client.java 
 monado\src\xrt\ipc\android\src\main\java\org\
 freedesktop\monado\ipc\MonadoImpl.java
-monado\src\xrt\targets\service-lib\service_target.cpp
-monado\src\xrt\ipc\server\ipc_server_process.c
-monado\src\xrt\targets\common\target_instance.c
-monado\src\xrt\state_trackers\oxr\oxr_session_gfx_gles_android.c  monado\src\xrt\compositor\client\comp_egl_client.c
-monado\src\xrt\compositor\client\comp_gl_client.c  monado\src\xrt\ipc\client\ipc_client_compositor.c 
-ipc_client_generated.c  monado\src\xrt\ipc\shared\ipc_utils.c ipc_server_generated.c
-monado\src\xrt\compositor\multi\comp_multi_system.c  monado\src\xrt\compositor\multi\comp_multi_compositor.c monado\src\xrt\compositor\util\comp_base.c
-monado\src\xrt\compositor\util\comp_swapchain.c monado\src\xrt\auxiliary\vk\vk_image_allocator.c  monado\src\xrt\auxiliary\vk\vk_helpers.c
+monado\src\xrt\targets\service-lib\service_target.cpp  
+monado\src\xrt\ipc\server\ipc_server_process.c  
+monado\src\xrt\targets\common\target_instance.c  
+monado\src\xrt\state_trackers\oxr\oxr_session.c
+monado\src\xrt\ipc\client\ipc_client_compositor.c   
+ipc_client_generated.c  
+monado\src\xrt\ipc\shared\ipc_utils.c  
+ipc_server_generated.c  
+monado\src\xrt\compositor\multi\comp_multi_system.c  
+monado\src\xrt\compositor\multi\comp_multi_compositor.c  
+monado\src\xrt\compositor\util\comp_base.c  
+<font face="黑体" color="red" size=3>
+monado\src\xrt\compositor\util\comp_swapchain.c  
+monado\src\xrt\auxiliary\vk\vk_image_allocator.c  
+monado\src\xrt\auxiliary\vk\vk_helpers.c
+monado\src\xrt\state_trackers\oxr\oxr_session_gfx_gles_android.c  
+monado\src\xrt\compositor\client\comp_egl_client.c  
+monado\src\xrt\compositor\client\comp_gl_eglimage_swapchain.c  
+monado\src\xrt\compositor\client\comp_gl_client.c
+</font>
 
 
 
