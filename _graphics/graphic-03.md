@@ -70,7 +70,5 @@ monado\src\xrt\compositor\multi\comp_multi_system.c  monado\src\xrt\compositor\m
 monado\src\xrt\compositor\util\comp_swapchain.c monado\src\xrt\auxiliary\vk\vk_image_allocator.c  monado\src\xrt\auxiliary\vk\vk_helpers.c
 
 
-<font face="黑体" size=5>参考</font>  
-[Monado Out of Process](http://dogee.tech/2022-04-10_Moando%20Out%20of%20Process%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.html)
 
 
