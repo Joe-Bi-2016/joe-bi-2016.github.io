@@ -55,8 +55,7 @@ server端创建VkSurfaceKHR是通过将java层创建的surface通过pipe管道�
 </div>
 <br />
 swap_chain的创建是在session中设置回调接口的，流程比较复杂。  
-<font face="黑体" color="red" size=5><b>它是在client端通过swapchain_allocator_create创建的，然后将句柄传递到server端，</b></font>  
-过程非常复杂，涉及到非常多的文件:   
+<font face="黑体" color="red" size=5><b>它是在client端通过swapchain_allocator_create创建的，然后将句柄传递到server端，</b></font>过程非常复杂，涉及到非常多的文件:   
 monado\src\xrt\ipc\android\src\main\java\org\
 freedesktop\monado\ipc\Client.java 
 monado\src\xrt\ipc\android\src\main\java\org\
