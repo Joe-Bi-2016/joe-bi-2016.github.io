@@ -1,5 +1,5 @@
 ---
-title: "C++11实现的无锁队列"
+title: "C++11实现无锁队列"
 collection: c-cplusplus
 permalink: /c-cplusplus/C++-Lock-Free-Queue
 excerpt: ' '
