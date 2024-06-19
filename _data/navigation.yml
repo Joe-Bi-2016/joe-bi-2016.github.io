@@ -16,7 +16,7 @@ main:
     url: /algorithm/     
 
   - title: "C/C++"
-    url: /c-c++/
+    url: /c++/
     
   - title: "Math"
     url: /math/    
