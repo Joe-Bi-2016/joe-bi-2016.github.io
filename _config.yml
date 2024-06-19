@@ -215,7 +215,7 @@ collections:
   algorithm:
     output: true
     permalink: /:collection/:path/
-  c++:
+  cplusplus:
     output: true
     permalink: /:collection/:path/
   math:
@@ -291,10 +291,10 @@ defaults:
       author_profile: true
       share: true
       comment: true
-  # _c-c++
+  # _cplusplus
   - scope:
       path: ""
-      type: c++
+      type: cplusplus
     values:
       layout: single
       author_profile: true

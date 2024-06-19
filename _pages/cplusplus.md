@@ -1,10 +1,10 @@
 ---
 layout: archive
 title: "C/C++"
-permalink: /c++/
+permalink: /cplusplus/
 author_profile: true
 ---
 
-{% for post in site.c++ reversed %}
+{% for post in site.cplusplus reversed %}
   {% include archive-single.html %}
 {% endfor %}
