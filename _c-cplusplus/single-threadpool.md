@@ -1,7 +1,7 @@
 ---
 title: "一种简单的C++线程池实现方案"
-collection: cplusplus
-permalink: /cplusplus/single-threadpool
+collection: c-cplusplus
+permalink: /c-cplusplus/single-threadpool
 excerpt: ' '
 date: 2024-06-19
 citation: 'Joe-Bi. (2024). &quot;single threadpool.&quot; <i>GitHub Joe-Bi of Bugs</i>'
