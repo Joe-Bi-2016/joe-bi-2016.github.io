@@ -1,5 +1,5 @@
 ---
-title: "Monado Out of Process从start到swapchain、EGLImage创建过程分析"
+title: "Monado Out of Process从start到swapchain、EGLImage创建过程"
 collection: graphics
 permalink: /graphics/graphic-03
 excerpt: ' '
