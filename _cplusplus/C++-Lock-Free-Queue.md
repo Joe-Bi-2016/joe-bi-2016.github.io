@@ -1,7 +1,7 @@
 ---
 title: "C++11实现的无锁队列"
-collection: c-c++
-permalink: /c-c++/C++-Lock-Free-Queue
+collection: cplusplus
+permalink: /cplusplus/C++-Lock-Free-Queue
 excerpt: ' '
 date: 2024-06-19
 citation: 'Joe-Bi. (2024). &quot;C++ Lock-Free Queue.&quot; <i>GitHub Joe-Bi of Bugs</i>'
