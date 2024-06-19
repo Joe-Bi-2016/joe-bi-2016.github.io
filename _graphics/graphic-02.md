@@ -12,7 +12,7 @@ citation: 'Joe-Bi. (2024). &quot;OpenXR---从xrCreateInstance到vkImage的创建
 
 openXR的开源实现runtime monado采用vulkan作为后台绘制，下图是从xrCreateInstance开始，分析它是如何创建vkImage、vkDeviceImage的
 
-在xrcreateInstance的过程中，注册了一些列相关函数接口，包括如何创建绘制buffer:compositor swapchian--->vkDeviceImage,具体分析看下图：
+在xrcreateInstance的过程中，注册了一些列相关回调函数接口，包括如何创建绘制buffer:compositor swapchian--->vkDeviceImage,具体分析看下图：
 
 
 <div  align="center">
