@@ -20,7 +20,7 @@ B matrix：p行N列
 C matrix：M行N列  
 
 <font color="red" size=5>矩阵全局索引计算:</font>   
-
+<br  />
 A矩阵全局索引计算：gRow范围与M一致，gRow*p是在A中的每行起始地址，k的范围是[TS, 2TS, ..., (p/TS) * TS],所以是块的行大小倍数，lCol是每块中行的索引，故对A矩阵，全局索引AgIdx = gRow * p + k + lCol;  
 
 B矩阵全局索引计算：每块数据的行大小也是k,B矩阵的全局索引行号为k + lRow, 每行大小为N，gCol范围与N一致，故对B矩阵，全局索引BgIdx = (k + lRow) * N + gCol;  
