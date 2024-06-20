@@ -14,8 +14,8 @@ cuda/opencl是cpu的协处理器的，被设计为提高计算能力的并行计
 
 A(M x p) X B(p x N) = C(M x N)  
 
-<font color="red" size=5>注意:</font> 
-<br  />  
+<font color="red" size=5>注意:</font>
+<br  />
 A matrix：M行p列  
 B matrix：p行N列  
 C matrix：M行N列  
