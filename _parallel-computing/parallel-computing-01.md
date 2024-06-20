@@ -1,5 +1,5 @@
 ---
-title: "矩阵乘法的一般并行优化算法"
+title: "矩阵乘法的并行算法"
 collection: ai
 permalink: /ai/ai-01
 excerpt: ' '
