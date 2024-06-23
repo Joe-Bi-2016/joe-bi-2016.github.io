@@ -1,5 +1,5 @@
 ---
-title: "你真的理解KMP算法吗"
+title: "KMP算法的通俗理解"
 collection: algorithm
 permalink: /algorithm/algorithm-02
 excerpt: ' '
