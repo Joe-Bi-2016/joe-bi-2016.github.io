@@ -7,7 +7,7 @@ date: 2024-06-27
 citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi of Bugs</i>'
 ---
    
-OpenGL ES从3.0版本开始支持texture arrays, Multiple Render Targets.
+OpenGL ES从3.0版本开始支持texture arrays, Multiple Render Targets.  
 texture arrays的用法可以参考:  
 [官方Demo](https://www.khronos.org/opengl/wiki/Example/Texture_Array_Creation)  
 以及这篇文章  
