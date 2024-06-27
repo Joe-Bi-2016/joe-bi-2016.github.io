@@ -13,7 +13,7 @@ OpenGL从4.0版本开始支持曲面细分着色器Tessellation Shader，OpenGL 
 
 [OpenGL 4.0的Tessellation Shader(细分曲面着色器)](https://www.cnblogs.com/zenny-chen/p/4280100.html)
 <br />
-[OpenGL Tessellation control Shader(细分曲面控制着色器)](https://blog.csdn.net/aoxuestudy/article/details/111991009)
+[OpenGL细分着色器详解](https://blog.csdn.net/aoxuestudy/article/details/124116047)
 
 
 
