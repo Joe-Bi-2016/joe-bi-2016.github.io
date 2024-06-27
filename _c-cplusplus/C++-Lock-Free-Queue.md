@@ -1,5 +1,5 @@
 ---
-title: "C++11实现无锁队列"
+title: "C++实现无锁队列"
 collection: c-cplusplus
 permalink: /c-cplusplus/C++-Lock-Free-Queue
 excerpt: ' '
@@ -57,7 +57,7 @@ citation: 'Joe-Bi. (2024). &quot;C++ Lock-Free Queue.&quot; <i>GitHub Joe-Bi of 
 综上所述，无锁队列是一种基于原子操作和内存模型的高性能并发数据结构，通过避免使用锁机制来提供高性能的入队和出队操作。在设计和实现无锁队列时需要注意上述关键点和注意事项，以确保程序的正确性和性能。
 
 
-## 六、链表式无锁队列的c++11实现
+## 六、链表式无锁队列的c++实现
 
 ```
 #ifndef __QueueCAS_h__
