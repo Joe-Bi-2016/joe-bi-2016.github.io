@@ -8,8 +8,10 @@ citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi o
 ---
    
 OpenGL ES从3.0版本开始支持texture arrays, Multiple Render Targets.
-texture arrays的用法可以[参考官方Demo](https://www.khronos.org/opengl/wiki/Example/Texture_Array_Creation),
-[以及这篇文章](https://www.cnblogs.com/psklf/p/5713791.html)
+texture arrays的用法可以参考:  
+[官方Demo](https://www.khronos.org/opengl/wiki/Example/Texture_Array_Creation)  
+以及这篇文章  
+[Array Texture初体验](https://www.cnblogs.com/psklf/p/5713791.html)
 <br />
    
 OpenGL从4.3版本，OpenGL ES从3.1版本开始支持计算着色器compute shader，用于通用并行计算加速。  
