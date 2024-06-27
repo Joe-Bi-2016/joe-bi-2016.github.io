@@ -10,6 +10,7 @@ citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi o
 OpenGL从4.3版本，OpenGL ES从3.1版本开始支持计算着色器compute shader，用于通用并行计算加速。  
 
 [具体如何做的，可以看看这篇文章](https://www.cnblogs.com/chen9510/p/12000320.html)
+[官网对compute shader的详细介绍和相关函数](https://www.khronos.org/opengl/wiki/Compute_Shader)
 
 
 
