@@ -1,7 +1,7 @@
 ---
 title: "矩阵乘法的并行算法"
-collection: ai
-permalink: /ai/ai-01
+collection: parallel-computing
+permalink: /parallel-computing/parallel-computing-01
 excerpt: ' '
 date: 2024-06-20
 citation: 'Joe-Bi. (2024). &quot;矩阵乘法-并行算法.&quot; <i>GitHub Joe-Bi of Bugs</i>'
