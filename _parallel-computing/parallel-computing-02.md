@@ -18,6 +18,8 @@ NCCL支持跨多个节点的通信，使得在GPU集群中进行分布式计算�
 
 NCCL[官网](https://developer.nvidia.com/nccl)
 
+分布式计算与NCCL: [算法分析与NCCL](https://zhuanlan.zhihu.com/p/337549503)
+
 对NCCL研究比较深入的文章来自CSDN的KIDGINBROOK,他撰写了[一系列的文章](https://blog.csdn.net/kidgin7439/category_11998768.html)，可以好好研读学习。
 
 另外这里有一篇对NCCL的流程概要分析，[NCCL简介及其流程分析](https://www.ctyun.cn/developer/article/464868577030213)
