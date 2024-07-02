@@ -24,7 +24,7 @@ NCCL[官网](https://developer.nvidia.com/nccl)
 
 [Nvidia英伟达的Multi-GPU多卡通信框架NCCL的理解](https://www.zhihu.com/question/63219175/answer/206697974)
 
-对NCCL研究比较深入的文章来自CSDN的KIDGINBROOK,他撰写了[一系列的文章](https://blog.csdn.net/kidgin7439/category_11998768.html)，可以好好研读学习。
+对NCCL研究比较深入的文章来自CSDN的KIDGINBROOK,他撰写了[一系列的文章](https://blog.csdn.net/kidgin7439/category_11998768.html)，可以好好研读学习
 
 另外这里有一篇对NCCL的流程概要分析，[NCCL简介及其流程分析](https://www.ctyun.cn/developer/article/464868577030213)
 
