@@ -1,15 +1,15 @@
 ---
-title: "Android Binder驱动"
+title: "Android Binder"
 collection: system
 permalink: /system/system-01
 excerpt: ' '
 date: 2024-07-12
-citation: 'Joe-Bi. (2024). &quot;Android Binder驱动.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Android Binder.&quot; <i>GitHub Joe-Bi of Bugs</i>'
 ---
 
 
 
-Android Binder驱动是Android系统中一个重要的内核模块，它负责管理Binder的注册、通信和调用等功能，是Android系统中进程间通信（IPC）的核心机制之一。以下是对Android Binder驱动的详细解析：
+Android Binder驱动是Android系统中一个重要的内核模块，它负责管理Binder的注册、通信和调用等功能，是Android系统中进程间通信（IPC）的核心机制之一。以下是对Android Binder驱动的解析：
 
 ## 一、Binder驱动的基本概述
 作用：Binder驱动是Android系统中用于实现进程间通信（IPC）的底层机制，它提供了一种高效、灵活的通信方式，使得Android系统中的各个组件能够相互协作。
