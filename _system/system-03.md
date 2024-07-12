@@ -1,7 +1,7 @@
 ---
 title: "KMP算法的通俗理解范师傅每个给‘；"
 collection: system
-permalink: /system/system-02
+permalink: /system/system-03
 excerpt: ' '
 date: 2024-07-12
 citation: 'Joe-Bi. (2024). &quot;KMP算法的本质.&quot; <i>GitHub Joe-Bi of Bugs</i>'
