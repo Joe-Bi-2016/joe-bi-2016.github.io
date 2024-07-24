@@ -57,18 +57,16 @@ server端创建VkSurfaceKHR是通过将java层创建的surface通过pipe管道�
 swap_chain的创建是在session中设置回调接口发起的，它在client端创建了image buffer，然后借助shared memory通过pipe管道通信传递到server端持有，然后又通过  
 eglGetNativeClientBufferANDROID(xscn->images[i].handle)拿到buffer创建EGLImage的,流程比较复杂。  
 <font face="黑体" color="red" size=5><b>在client端通过swapchain_allocator_create创建image buffer，然后将句柄handle传递到server端，</b></font>过程非常复杂，涉及到非常多的文件:   
-monado\src\xrt\ipc\android\src\main\java\org\
-freedesktop\monado\ipc\Client.java 
-monado\src\xrt\ipc\android\src\main\java\org\
-freedesktop\monado\ipc\MonadoImpl.java
+monado\src\xrt\ipc\android\src\main\java\org\freedesktop\monado\ipc\Client.java  
+monado\src\xrt\ipc\android\src\main\java\org\freedesktop\monado\ipc\MonadoImpl.java  
 monado\src\xrt\targets\service-lib\service_target.cpp  
 monado\src\xrt\ipc\server\ipc_server_process.c  
 monado\src\xrt\targets\common\target_instance.c  
 monado\src\xrt\state_trackers\oxr\oxr_session.c
 monado\src\xrt\ipc\client\ipc_client_compositor.c   
-ipc_client_generated.c  
+monado\<font face="黑体" size=4 color=red>ProjBuildDir</font>\src\xrt\ipc\ipc_client_generated.c(project generated)  
 monado\src\xrt\ipc\shared\ipc_utils.c  
-ipc_server_generated.c  
+monado\<font face="黑体" size=4 color=red>ProjBuildDir</font>\src\xrt\ipc\ipc_server_generated.c(project generated)  
 monado\src\xrt\compositor\multi\comp_multi_system.c  
 monado\src\xrt\compositor\multi\comp_multi_compositor.c  
 monado\src\xrt\compositor\util\comp_base.c  
