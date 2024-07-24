@@ -64,9 +64,9 @@ monado\src\xrt\ipc\server\ipc_server_process.c
 monado\src\xrt\targets\common\target_instance.c  
 monado\src\xrt\state_trackers\oxr\oxr_session.c
 monado\src\xrt\ipc\client\ipc_client_compositor.c   
-monado\<font face="黑体" size=4 color=red>ProjBuildDir</font>\src\xrt\ipc\ipc_client_generated.c(project generated)  
+monado\ProjBuildDir_XXX\src\xrt\ipc\ipc_client_generated.c(project generated)    
 monado\src\xrt\ipc\shared\ipc_utils.c  
-monado\<font face="黑体" size=4 color=red>ProjBuildDir</font>\src\xrt\ipc\ipc_server_generated.c(project generated)  
+monado\ProjBuildDir_XXX\src\xrt\ipc\ipc_server_generated.c(project generated)    
 monado\src\xrt\compositor\multi\comp_multi_system.c  
 monado\src\xrt\compositor\multi\comp_multi_compositor.c  
 monado\src\xrt\compositor\util\comp_base.c  
