@@ -33,7 +33,7 @@ Service Manager：Service Manager是一个特殊的Binder服务，用于管理�
 Client和Server：Client和Server是Binder机制中的两个主要角色。Client通过Binder驱动向Server发送请求并接收响应；Server则处理来自Client的请求并返回结果。
 系统服务：Android系统中的许多系统服务（如Activity Manager、Window Manager等）都通过Binder机制与其他组件进行通信和协作。  
 
-## 五、Binder框架的一些列详细分析文章
+## 五、Binder框架的一些列详细分析文章（转载）
 
 [Android Binder框架实现之Binder的设计思想](https://blog.csdn.net/tkwxty/article/details/102824924)  
 [Android Binder框架实现之何为匿名/实名Binder](https://blog.csdn.net/tkwxty/article/details/108343847)  
