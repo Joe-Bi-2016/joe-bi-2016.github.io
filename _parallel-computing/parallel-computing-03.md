@@ -14,9 +14,9 @@ CUDA-aware MVAPICH2-GDR和NVIDIA Collective Communications Library (NCCL)在GPU�
 MPI(消息传递接口)是一个标准化和便携式的用于数据通信的API，它通过分布式进程之间的消息进行数据通信。
 
 #### 1.基础与兼容性：
-1）CUDA-aware MVAPICH2-GDR是一个开源的MPI（消息传递接口）实现，与大多数遵循MPI标准的软件兼容，它提供了高性能和高扩展性，特别适用于基于MPI的应用程序。</br>
-2）CUDA-aware MVAPICH2-GDR支持GPU内存直接参与MPI通信，无需通过主机内存中转，从而提高了数据传输效率。</br>
-3）MVAPICH2-GDR是MVAPICH2的一个扩展版本，增加了对GPUDirect RDMA的支持，进一步优化了GPU之间的通信性能。</br>
+1）CUDA-aware MVAPICH2-GDR是一个开源的MPI（消息传递接口）实现，与大多数遵循MPI标准的软件兼容，它提供了高性能和高扩展性，特别适用于基于MPI的应用程序。<br  />
+2）CUDA-aware MVAPICH2-GDR支持GPU内存直接参与MPI通信，无需通过主机内存中转，从而提高了数据传输效率。<br  />
+3）MVAPICH2-GDR是MVAPICH2的一个扩展版本，增加了对GPUDirect RDMA的支持，进一步优化了GPU之间的通信性能。<br  />
 
 #### 2.应用场景：
 CUDA-aware MVAPICH2-GDR特别擅长处理跨多个计算节点和多个GPU的通信，这对于需要大规模分布式计算的应用来说至关重要,适用于需要广泛MPI支持的高性能计算（HPC）场景，特别是在涉及多个节点和多个GPU的复杂集群环境中。
@@ -24,14 +24,14 @@ CUDA-aware MVAPICH2-GDR特别擅长处理跨多个计算节点和多个GPU的通
 ### NVIDIA NCCL
 
 #### 1.深度学习与优化：
-1）NCCL是NVIDIA专为深度学习训练设计的通信库，它专注于在多个GPU之间高效地传输数据。</br>
-2）NCCL提供了集合通信和点对点通信的发送/接收原语，如AllReduce、Broadcast等，这些操作对于分布式深度学习训练至关重要。</br>
-3）NCCL支持多种GPU互联技术，包括PCIe、NVLink、InfiniBand和IP sockets，能够根据不同的硬件环境进行优化，以达到最佳的通信性能。</br>
+1）NCCL是NVIDIA专为深度学习训练设计的通信库，它专注于在多个GPU之间高效地传输数据。<br  />
+2）NCCL提供了集合通信和点对点通信的发送/接收原语，如AllReduce、Broadcast等，这些操作对于分布式深度学习训练至关重要。<br  />
+3）NCCL支持多种GPU互联技术，包括PCIe、NVLink、InfiniBand和IP sockets，能够根据不同的硬件环境进行优化，以达到最佳的通信性能。<br  />
 
 #### 2.性能与易用性：
-1）NCCL通过优化通信算法和减少资源需求，实现了快速同步和达到峰值带宽。这对于加速神经网络训练至关重要，因为训练过程中需要大量的数据交换和同步操作。</br>
-2）它提供了简单易用的C API，可以从多种编程语言轻松访问，降低了开发人员的负担。</br>
-3）NCCL与深度学习框架（如TensorFlow、PyTorch和Keras）紧密集成，为用户提供了无缝的编程体验。</br>
+1）NCCL通过优化通信算法和减少资源需求，实现了快速同步和达到峰值带宽。这对于加速神经网络训练至关重要，因为训练过程中需要大量的数据交换和同步操作。<br  />
+2）它提供了简单易用的C API，可以从多种编程语言轻松访问，降低了开发人员的负担。<br  />
+3）NCCL与深度学习框架（如TensorFlow、PyTorch和Keras）紧密集成，为用户提供了无缝的编程体验。<br  />
 
 ### NVIDIA为什么要开发NCCL
 
