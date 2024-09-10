@@ -1,5 +1,5 @@
 ---
-title: "信号量、互斥锁、自旋锁的区别"
+title: "Linux信号量、互斥锁、自旋锁的区别"
 collection: system
 permalink: /system/system-04
 excerpt: ' '
