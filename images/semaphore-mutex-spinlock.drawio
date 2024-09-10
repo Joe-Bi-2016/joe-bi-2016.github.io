@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-09-10T03:50:16.037Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" etag="wRgV7mWCfj08MPqtnifF" version="24.5.5" type="device">
+<mxfile host="app.diagrams.net" modified="2024-09-10T04:04:37.417Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" etag="2g07FUlbM7bRk8yRieGe" version="24.5.5" type="device">
   <diagram name="第 1 页" id="8-K03GdQAmUe2W-Szy75">
     <mxGraphModel dx="880" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -123,7 +123,7 @@
           <mxGeometry x="550" y="40" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="twfqBkjTWV-3-E16up6L-44" value="&lt;font color=&quot;#cc6600&quot;&gt;1. delete from running-queue&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#cc6600&quot;&gt;2. move to wait-queue&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#cc6600&quot;&gt;3. set state to wait&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#B9E0A5;" vertex="1" parent="1">
-          <mxGeometry x="610" y="270" width="160" height="60" as="geometry" />
+          <mxGeometry x="610" y="270" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="twfqBkjTWV-3-E16up6L-46" value="" style="curved=1;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
