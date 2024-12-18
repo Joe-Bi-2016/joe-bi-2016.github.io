@@ -24,19 +24,64 @@ citation: 'Joe-Bi. (2024). &quot;Android Camera2 API & EGL Image纹理.&quot; <i
 
 ### Camera2 API：
 在设备旋转时，camera1 api是通过cmaera对象的setDisplayOrientation函数来做的，无需考虑TextureView、SurfaceView等
-预览显示组件的旋转方向。TextureView不应该通过setTransform函数设置它的旋转Matrix。
+预览显示组件的旋转方向。TextureView不应该通过<font color=red size=3>setTransform</font>函数设置它的旋转Matrix。
 
 使用camera2 api时，有以下的不同。
-1）使用TextureView作为预览显示组件时，必须设置它的旋转Matrix，即通过TextureView的setTransform函数来设置从camera获取的参数计算好的Matrix给它，这里有个坑就是如果在第一次调用setTransform时传递了null参数，那么再传递非空的matrix参数会无效，导致效果上看起来
+1）使用TextureView作为预览显示组件时，必须设置它的旋转Matrix，即通过TextureView的setTransform函数来设置从camera获取的参数计算好的Matrix给它，这里有个坑就是如果在第一次调用<font color=red size=3>setTransform时传递了null参数</font>，那么再传递非空的matrix参数会无效，导致效果上看起来
 设备旋转后，画面是不会旋转的；
 
 2）使用SurfaceView作为预览显示组件时，不能设置它的旋转Matrix.
 
 3) 使用OES纹理生成一个SurfaceTexture给Camera作为预览时，如果预览显示组件是TextureView，只需要通过getTransformMatrix函数获取SurfaceTexture的纹理旋转矩阵，将其设置为GLSL中的纹理坐标变换矩阵就OK了，设备旋转预览画面都正常；
-
+```
+float[] textureMatrix = new float[16];
+mSurfaceTexture.getTransformMatrix(textureMatrix);
+mNativeEglRender.native_setParamMatrix(0, mTextureMatName, textureMatrix);
+```
 4) 如果预览显示组件是SurfaceView时，情况就又不一样了。和TextureView中使用OES纹理生成一个SurfaceTexture给Camera作为预览的过程一样，设置完GLSL中的纹理坐标变换矩阵后，设备旋转时预览画面方向却没有旋转。如果使通过Matrix的rotateM、setRotateM等方法计算出正确的纹理旋转变换矩阵传递给纹理变换，画面也不正确，花屏，扭曲。为了验证这个问题，我将所有数据复制出来在PC端上使用glm执行相同的计算，矩阵结果完全一致，但PC上的画面就是正常的，画面旋转与预期一致。
 这看起来是个平台相关的问题，至少在高通平台(小米手机14)上验证是这样的。
 那么只有通过设备旋转角，使用Matrix计算出旋转矩阵后，设置给GLSL中的位置Position模型矩阵了，这样修改后，画面果然正确，不再扭曲花屏；
+```
+float[] modelMatrix = new float[16];
+setIdentityM(modelMatrix, 0);
+// Note: camera2 api did not set rotation matrix for SurfaceTexture, so need do transform in here
+if (mCameraManager instanceof Camera2Manager) {
+    int displayRotatimCameraMangetDisplayOrientation();
+    boolean isFrontCame((Camera2ManamCameraManaisFrontCmaera());
+    int degree = 0;
+    switch (displayRotation) {
+        case 0:
+            if(isFrontCamera)
+                degree = 270;
+            else
+                degree = 90;
+            break;
+        case 90:
+            if(isFrontCamera)
+                degree = 180;
+            else
+                degree = 0;
+            break;
+        case 180:
+            if(isFrontCamera)
+                degree = 90;
+            else
+                degree = 270;
+            break;
+        case 270:
+            if(isFrontCamera)
+                degree = 0;
+            else
+                degree = 180;
+            break;
+    }
+    setRotateM(modelMatrixdegree, 0, 0, 1); // modelMatrixdegree been transport to vert glsl
+}
+
+// Vert shader set matrix of position
+gl_Position = modelMatrixd * vec4(position, 1.0);
+
+```
 
 ### EGL Image纹理：
 
@@ -44,10 +89,22 @@ citation: 'Joe-Bi. (2024). &quot;Android Camera2 API & EGL Image纹理.&quot; <i
 当生成EGL Image纹理时，如果width或height是非4的倍数时，其内存在分配时需要4字节对齐，那么行长stride并不是创建时的width，一定比width大。
 那么如何知道系统分配了多大的stride呢，是公式stride = width + (4 - width % 4)计算的结果吗？
 使用这个公式计算的stride，逐行copy出AHardwareBuffer_lock获取的数据，也是花屏。
+```
+AHardwareBuffer_Desc desc = {pixelsWide, pixelsHigh,
+                            1,
+                            format,
+                            AHARDWAREBUFFER_USAGE_CPU_WRITE_OFTEN|AHARDWAREBUFFER_USAGE_GPU_SAMPLED_IMAGE,
+                            pixelsWide,
+                            0 ,
+                            0};
+```
+那这个stride究竟该是多少，如何计算或如何获知呢。看上面代码，经过研究观察，在通过AHardwareBuffer_Desc创建AHardwareBuffer时，该结构体有个stride项，那么是否有哪个函数可以获取这个stride呢。一番查找，找到了AHardwareBuffer_describe函数，通过这个函数就可以获得创建AHardwareBuffer的AHardwareBuffer_Desc了，也就能获取正确的stride了。
+```
+AHardwareBuffer_describe(mInBuffer, &desc);
+stride = desc.stride;
+```
 
-那这个stride究竟该是多少，如何计算或如何获知呢。经过研究观察，在通过AHardwareBuffer_Desc创建AHardwareBuffer时，该结构体有个
-stride项，那么是否有哪个函数可以获取这个stride呢。一番查找，找到了AHardwareBuffer_describe函数，通过这个函数就可以获得创建
-AHardwareBuffer的AHardwareBuffer_Desc了，也就能获取正确的stride了。使用这个stride代替公式计算的那个值，验证完全正确，不再花屏了。
+使用这个stride代替公式计算的那个值，验证完全正确，不再花屏了。
 
 这就是这个项目开发中遇到的几个极品问题，记录一下，防避雷。
 
