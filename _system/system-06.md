@@ -98,7 +98,7 @@ AHardwareBuffer_Desc desc = {pixelsWide, pixelsHigh,
                             0 ,
                             0};
 ```
-那这个stride究竟该是多少，如何计算或如何获知呢。看上面代码，经过研究观察，在通过AHardwareBuffer_Desc创建AHardwareBuffer时，该结构体有个stride项，那么是否有哪个函数可以获取这个stride呢。一番查找，找到了AHardwareBuffer_describe函数，通过这个函数就可以获得创建AHardwareBuffer的AHardwareBuffer_Desc了，也就能获取正确的stride了。
+那这个stride究竟该是多少，如何计算或如何获知呢。看上面代码，经过观察研究，在通过AHardwareBuffer_Desc创建AHardwareBuffer时，该结构体有个stride项，那么是否有哪个函数可以获取这个stride呢。一番查找，找到了AHardwareBuffer_describe函数，通过这个函数就可以获得创建AHardwareBuffer的AHardwareBuffer_Desc了，也就能获取正确的stride了。
 ```
 AHardwareBuffer_describe(mInBuffer, &desc);
 stride = desc.stride;
