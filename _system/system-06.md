@@ -10,7 +10,7 @@ citation: 'Joe-Bi. (2024). &quot;Android Camera2 API & EGL Image纹理.&quot; <i
 
 最近做了一个有关照相机和滤镜渲染引擎的项目，复盘下在开发过程中碰到的坑点。
 
-#### 项目地址：https://github.com/Joe-Bi-2016/CameraFilterRenderEngine
+#### 项目地址：<https://github.com/Joe-Bi-2016/CameraFilterRenderEngine>
 
 ### 项目目的：
 1) 开发一套较为通用的OpenGL ES的滤镜渲染引擎；<br />
