@@ -85,10 +85,15 @@ gl_Position = modelMatrix * vec4(position, 1.0);
 
 ### EGL Image纹理：
 
-在ndk层创建fbo，绑定EGL Image纹理作为存储渲染结果，当获取pixels时可以通过AHardwareBuffer_lock函数直接获取AHardwareBuffer的buffer，比glReadPixels性能上要优越的多。但这里有个非常隐蔽的坑。
-当生成EGL Image纹理时，如果width或height是非4的倍数时，其内存在分配时需要4字节对齐，那么行长stride并不是创建时的width，一定比width大。
-那么如何知道系统分配了多大的stride呢，是公式stride = width + (4 - width % 4)计算的结果吗？
-使用这个公式计算的stride，逐行copy出AHardwareBuffer_lock获取的数据，也是花屏。
+在ndk层创建fbo，绑定EGL Image纹理作为存储渲染结果，当获取pixels时可以通过AHardwareBuffer_lock函数直接获取AHardwareBuffer的buffer，比glReadPixels性能上要高很多。直接copy出来，画面正常，没问题，但这里有个非常隐蔽的坑。
+
+当生成EGL Image纹理时，如果width或height是奇数非4的倍数时(起决于指定AHardwareBuffer_Desc中的format格式是4字节还是3字节又或2字节)，其内存在分配时会字节对齐，那么行长stride与创建时指定的width并不相等，一般比width大，直接copy就会导致花屏。
+
+那如何知道系统分配了多大的stride呢，是公式stride = width + (4 - width % 4)计算的结果吗？
+使用这个公式计算的stride验证一下，注意需要逐行copy出AHardwareBuffer_lock获取的数据，还是花屏。
+
+那这个stride究竟是多少，如何计算或如何获知呢。看下面代码，经过观察研究，在创建AHardwareBuffer指定AHardwareBuffer_Desc数据结构时，该结构体有个stride项，是不是有哪个函数可以获取这个stride呢。一番搜索查阅，找到了AHardwareBuffer_describe这个函数，
+通过这个函数就可以获得创建AHardwareBuffer的实际AHardwareBuffer_Desc值，也就能获取正确的stride了。
 ```
 AHardwareBuffer_Desc desc = {pixelsWide, pixelsHigh,
                             1,
@@ -97,14 +102,12 @@ AHardwareBuffer_Desc desc = {pixelsWide, pixelsHigh,
                             pixelsWide,
                             0 ,
                             0};
-```
-那这个stride究竟该是多少，如何计算或如何获知呢。看上面代码，经过观察研究，在通过AHardwareBuffer_Desc创建AHardwareBuffer时，该结构体有个stride项，那么是否有哪个函数可以获取这个stride呢。一番查找，找到了AHardwareBuffer_describe函数，通过这个函数就可以获得创建AHardwareBuffer的AHardwareBuffer_Desc了，也就能获取正确的stride了。
-```
+							
 AHardwareBuffer_describe(mInBuffer, &desc);
 stride = desc.stride;
 ```
 
-使用这个stride代替公式计算的那个值，验证完全正确，不再花屏了。
+使用这个stride代替公式计算的那个值，验证，完全正确，不再花屏了。
 
-这就是这个项目开发中遇到的几个极品问题，记录一下，防避雷。
+这就是这个项目开发中遇到的几个极品问题，记录一下，防避坑。
 
