@@ -79,7 +79,7 @@ if (mCameraManager instanceof Camera2Manager) {
 }
 
 // Vert shader set matrix of position
-gl_Position = modelMatrixd * vec4(position, 1.0);
+gl_Position = modelMatrix * vec4(position, 1.0);
 
 ```
 
