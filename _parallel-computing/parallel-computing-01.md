@@ -44,8 +44,8 @@ __global__ void matrix_mul(int* A, int* B, int* C, int M, int N, int P)
 	
 	for(int k = 0; k < P; k += TS)
 	{
-        Asub[lRow][lCol] = A[gRow * P + lCol + k];
-        Bsub[lRow][lCol] = B[(lRow + k) * N + gCol];
+		Asub[lRow][lCol] = A[gRow * P + lCol + k];
+        	Bsub[lRow][lCol] = B[(lRow + k) * N + gCol];
 
 		__syncthreads();
 
@@ -80,8 +80,8 @@ __kernel void matrix_mul(const __global int* A, const __global int* B, __global 
 	
 	for(int k = 0; k < P; k += TS)
 	{
-        Asub[lRow][lCol] = A[gRow * P + lCol + k];
-        Bsub[lRow][lCol] = B[(lRow + k) * N + gCol];
+        	Asub[lRow][lCol] = A[gRow * P + lCol + k];
+        	Bsub[lRow][lCol] = B[(lRow + k) * N + gCol];
 
 		barrier(CLK_LOCAL_MEM_FENCE);
 
