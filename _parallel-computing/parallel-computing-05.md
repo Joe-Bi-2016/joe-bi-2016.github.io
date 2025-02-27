@@ -144,7 +144,18 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-#  <font color="red">六、形象理解</font>
+#  六、关键挑战与解决方案
+- &zwnj;**网络拥塞**&zwnj;：  
+  - InfiniBand：自适应路由和基于信用的流控  
+  - RoCE：DCQCN 算法 + PFC 优先级划分  
+- &zwnj;**内存安全**&zwnj;：  
+  - 通过内存注册和密钥（L_Key/R_Key）保护远程内存访问  
+- &zwnj;**兼容性**&zwnj;：  
+  - iWARP 支持传统TCP/IP，但性能受限；RoCEv2通过UDP/IP实现跨子网通信  
+
+---
+
+#  <font color="red">七、角色与形象理解</font>
 
    可以将InfiniBand类比成高速公路网和交通法则，NIC类比成运输工具来理解InfiniBand和NIC。
 
@@ -188,17 +199,6 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
    HCA直接分片发送数据包（集装箱卡车队）‌  
    4). &zwnj;**签收反馈**&zwnj;  
    接收端生成CQE完成通知（电子回单）‌
-
----
-
-#  七、关键挑战与解决方案
-- &zwnj;**网络拥塞**&zwnj;：  
-  - InfiniBand：自适应路由和基于信用的流控  
-  - RoCE：DCQCN 算法 + PFC 优先级划分  
-- &zwnj;**内存安全**&zwnj;：  
-  - 通过内存注册和密钥（L_Key/R_Key）保护远程内存访问  
-- &zwnj;**兼容性**&zwnj;：  
-  - iWARP 支持传统TCP/IP，但性能受限；RoCEv2通过UDP/IP实现跨子网通信  
 
 ---
 
