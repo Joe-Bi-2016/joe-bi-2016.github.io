@@ -29,13 +29,13 @@ citation: 'Joe-Bi. (2025). &quot;RDMA技术原理与实现浅析.&quot; <i>GitHu
 
 ## 4. RDMA网络协议实现  
 目前，RDMA有三种不同的硬件实现方式，分别是InfiniBand、iWarp和RoCE（RDMA over Converged Ethernet）。其中，InfiniBand是一种专为RDMA设计的网络，从硬件级别保证可靠传输；而RoCE和iWARP都是基于以太网的RDMA技术，支持相应的verbs接口。
-### 主要协议类型  
-- &zwnj;**InfiniBand**&zwnj;：专为RDMA设计的网络协议，硬件级可靠传输。  
-- &zwnj;**RoCE（RDMA over Converged Ethernet）**&zwnj;：基于以太网的RDMA实现，分为两个版本：  
+  
+&zwnj;**InfiniBand**&zwnj;：专为RDMA设计的网络协议，硬件级可靠传输。  
+&zwnj;**iWARP**&zwnj; ：通过TCP/IP实现RDMA，兼容传统网络设备 。  
+&zwnj;**RoCE（RDMA over Converged Ethernet）**&zwnj;：基于以太网的RDMA实现，分为两个版本：  
   - &zwnj;**RoCEv1**&zwnj;：基于以太网链路层，依赖PFC流控技术。  
   -  &zwnj;**RoCEv2**&zwnj; ：基于UDP/IP协议栈，支持IP路由 。  
--  &zwnj;**iWARP**&zwnj; ：通过TCP/IP实现RDMA，兼容传统网络设备 。  
-
+  
 ---
 
 ## 5. RDMA工作流程 
