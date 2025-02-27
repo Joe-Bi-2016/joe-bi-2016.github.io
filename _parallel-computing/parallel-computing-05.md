@@ -1,14 +1,14 @@
 ---
-title: "InfiniBand和NIC在RDMA中工作原理和扮演的角色"
+title: "InfiniBand和NIC两种RDMA技术实现方案以及在混合网络中的角色理解"
 collection: parallel-computing
 permalink: /parallel-computing/parallel-computing-05
 excerpt: ' '
 date: 2025-02-27
-citation: 'Joe-Bi. (2025). &quot;InfiniBand和NIC在RDMA中工作原理和扮演的角色.&quot; <i>GitHub Joe-Bi of blog</i>'
+citation: 'Joe-Bi. (2025). &quot;InfiniBand和NIC两种RDMA技术实现方案以及在混合网络中的角色理解.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 # 一、InfiniBand
-InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，专为大规模并行计算和数据中心设计。在 RDMA场景中，InfiniBand的核心职责包括：
+InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，专为大规模并行计算和数据中心设计。在RDMA场景中，InfiniBand的核心职责包括：
 
 ### 1. 提供高带宽、低延迟的传输通道
 - &zwnj;**物理层支持**&zwnj;：通过专用InfiniBand网络（如QSFP光纤）实现高吞吐量（可达400 Gbps）和微秒级延迟  
@@ -64,7 +64,7 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-# 四、协同工作流程示例（以InfiniBand为例）
+# 四、工作流程示例（以InfiniBand为例）
 1. &zwnj;**初始化**&zwnj;：  
    - 应用程序注册内存区域（MR），创建队列对（QP）  
    - HCA 将 MR 的物理地址和访问权限同步到远程节点  
@@ -142,7 +142,7 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-#  <font color="red">六、角色与形象理解</font>
+#  <font color="red">六、混合网络中的角色与形象理解</font>
 
    可以将InfiniBand类比成高速公路网和交通法则，NIC类比成运输工具来理解InfiniBand和NIC。
 
