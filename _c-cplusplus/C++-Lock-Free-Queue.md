@@ -4,7 +4,7 @@ collection: c-cplusplus
 permalink: /c-cplusplus/C++-Lock-Free-Queue
 excerpt: ' '
 date: 2024-06-19
-citation: 'Joe-Bi. (2024). &quot;C++ Lock-Free Queue.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;C++ Lock-Free Queue.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 无锁队列（Lock-Free Queue）的原理是基于原子操作和内存模型，旨在解决高并发环境下的数据访问问题。其核心思想是通过复杂的原子操作来确保多线程环境下的数据一致性和正确性，从而避免使用传统的锁机制带来的性能开销和潜在的死锁问题。以下是关于无锁队列原理的详细解释：

@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-06
 excerpt: ' '
 date: 2024-06-27
-citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 OpenGL从4.0版本开始支持曲面细分着色器Tessellation Shader，OpenGL ES从3.2版本开始支持曲面细分和几何着色器Tessellation and Geometry Shaders。  

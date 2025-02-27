@@ -4,7 +4,7 @@ collection: system
 permalink: /system/system-05
 excerpt: ' '
 date: 2024-10-25
-citation: 'Joe-Bi. (2024). &quot;Android画面绘制显示流程.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Android画面绘制显示流程.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 

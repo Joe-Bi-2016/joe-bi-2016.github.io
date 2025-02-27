@@ -4,7 +4,7 @@ collection: system
 permalink: /system/system-03
 excerpt: ' '
 date: 2024-09-05
-citation: 'Joe-Bi. (2024). &quot;Linux进程不可中断休眠.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Linux进程不可中断休眠.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 

@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-02
 excerpt: ' '
 date: 2024-06-11
-citation: 'Joe-Bi. (2024). &quot;OpenXR---从xrCreateInstance到vkImage的创建.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;OpenXR---从xrCreateInstance到vkImage的创建.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 

@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-03
 excerpt: ' '
 date: 2024-06-13
-citation: 'Joe-Bi. (2024). &quot;Monado Out of Process分析.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Monado Out of Process分析.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 

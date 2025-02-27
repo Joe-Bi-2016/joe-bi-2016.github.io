@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-01
 excerpt: ' '
 date: 2024-06-11
-citation: 'Joe-Bi. (2024). &quot;OpenXR之helloxr.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;OpenXR之helloxr.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 

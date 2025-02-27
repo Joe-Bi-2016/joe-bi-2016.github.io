@@ -4,7 +4,7 @@ collection: system
 permalink: /system/system-01
 excerpt: ' '
 date: 2024-07-12
-citation: 'Joe-Bi. (2024). &quot;Android Binder.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Android Binder.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 

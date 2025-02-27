@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-07
 excerpt: ' '
 date: 2024-07-18
-citation: 'Joe-Bi. (2024). &quot;Vulkan RenderPass.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Vulkan RenderPass.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 发现很多人在学习理解vulkan renderpass时，都是去学习它的数据结构和相关函数API的调用，对图形渲染管线原理和其中的一些抽象概念理解甚少。

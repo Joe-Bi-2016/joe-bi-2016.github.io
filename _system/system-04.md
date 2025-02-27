@@ -4,7 +4,7 @@ collection: system
 permalink: /system/system-04
 excerpt: ' '
 date: 2024-09-10
-citation: 'Joe-Bi. (2024). &quot;Linux信号量、互斥锁、自旋锁.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Linux信号量、互斥锁、自旋锁.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 

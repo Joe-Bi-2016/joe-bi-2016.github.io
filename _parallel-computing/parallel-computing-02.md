@@ -4,7 +4,7 @@ collection: parallel-computing
 permalink: /parallel-computing/parallel-computing-02
 excerpt: ' '
 date: 2024-07-02
-citation: 'Joe-Bi. (2024). &quot;NCCL.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;NCCL.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 NCCL（NVIDIA Collective Communications Library）是由NVIDIA开发的一种用于高性能GPU集群的通信库。

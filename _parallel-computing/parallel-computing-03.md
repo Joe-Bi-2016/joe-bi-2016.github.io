@@ -4,7 +4,7 @@ collection: parallel-computing
 permalink: /parallel-computing/parallel-computing-03
 excerpt: ' '
 date: 2024-07-30
-citation: 'Joe-Bi. (2024). &quot;CUDA-aware MVAPICH2-GDR & NCCL.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;CUDA-aware MVAPICH2-GDR & NCCL.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 CUDA-aware MVAPICH2-GDR和NVIDIA Collective Communications Library (NCCL)在GPU集群中各自扮演着重要的角色，尽管它们都旨在优化GPU之间的通信，但它们的侧重点和应用场景有所不同，这解释了为什么NVIDIA在拥有CUDA-aware MVAPICH2-GDR的情况下仍然开发了NCCL。

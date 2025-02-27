@@ -4,7 +4,7 @@ collection: system
 permalink: /system/system-06
 excerpt: ' '
 date: 2024-12-18
-citation: 'Joe-Bi. (2024). &quot;Android Camera2 API & EGL Image纹理.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;Android Camera2 API & EGL Image纹理.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 

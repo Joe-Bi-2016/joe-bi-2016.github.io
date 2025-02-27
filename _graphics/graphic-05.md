@@ -4,7 +4,7 @@ collection: graphics
 permalink: /graphics/graphic-05
 excerpt: ' '
 date: 2024-06-27
-citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2024). &quot;OpenGL compute shader.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 OpenGL ES从3.0版本开始支持texture arrays, Multiple Render Targets.  
