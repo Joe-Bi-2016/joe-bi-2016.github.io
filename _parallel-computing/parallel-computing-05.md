@@ -6,8 +6,6 @@ excerpt: ' '
 date: 2025-02-27
 citation: 'Joe-Bi. (2025). &quot;InfiniBand和NIC在RDMA中工作原理和扮演的角色.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
-   
-# InfiniBand和NIC在RDMA中工作原理和扮演的角色
 
 # 一、InfiniBand在RDMA中的职责
 InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，专为大规模并行计算和数据中心设计。在 RDMA场景中，InfiniBand的核心职责包括：
@@ -81,7 +79,7 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-# 五、NIC与Infiniband关系
+# 五、Infiniband与NIC关系
 
 ### 1. 广义上的联系
 - &zwnj;**硬件角色**&zwnj;：两者都是网络通信的硬件组件，负责连接计算机与网络，管理数据传输‌
@@ -144,18 +142,7 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-#  六、关键挑战与解决方案
-- &zwnj;**网络拥塞**&zwnj;：  
-  - InfiniBand：自适应路由和基于信用的流控  
-  - RoCE：DCQCN 算法 + PFC 优先级划分  
-- &zwnj;**内存安全**&zwnj;：  
-  - 通过内存注册和密钥（L_Key/R_Key）保护远程内存访问  
-- &zwnj;**兼容性**&zwnj;：  
-  - iWARP 支持传统TCP/IP，但性能受限；RoCEv2通过UDP/IP实现跨子网通信  
-
----
-
-#  <font color="red">七、角色与形象理解</font>
+#  <font color="red">六、角色与形象理解</font>
 
    可以将InfiniBand类比成高速公路网和交通法则，NIC类比成运输工具来理解InfiniBand和NIC。
 
@@ -199,6 +186,17 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
    HCA直接分片发送数据包（集装箱卡车队）‌  
    4). &zwnj;**签收反馈**&zwnj;  
    接收端生成CQE完成通知（电子回单）‌
+
+---
+
+#  七、关键挑战与解决方案
+- &zwnj;**网络拥塞**&zwnj;：  
+  - InfiniBand：自适应路由和基于信用的流控  
+  - RoCE：DCQCN 算法 + PFC 优先级划分  
+- &zwnj;**内存安全**&zwnj;：  
+  - 通过内存注册和密钥（L_Key/R_Key）保护远程内存访问  
+- &zwnj;**兼容性**&zwnj;：  
+  - iWARP 支持传统TCP/IP，但性能受限；RoCEv2通过UDP/IP实现跨子网通信  
 
 ---
 
