@@ -1,10 +1,10 @@
 ---
-title: "现代系统架构设计的思考"
+title: "系统架构设计的思考"
 collection: system
 permalink: /system/system-07
 excerpt: ' '
 date: 2025-02-27
-citation: 'Joe-Bi. (2025). &quot;现代系统架构设计的思考.&quot; <i>GitHub Joe-Bi of blog</i>'
+citation: 'Joe-Bi. (2025). &quot;系统架构设计的思考.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
 
