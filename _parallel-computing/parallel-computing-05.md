@@ -7,7 +7,7 @@ date: 2025-02-27
 citation: 'Joe-Bi. (2025). &quot;InfiniBand和NIC在RDMA中工作原理和扮演的角色.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
 
-# 一、InfiniBand在RDMA中的职责
+# 一、InfiniBand
 InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，专为大规模并行计算和数据中心设计。在 RDMA场景中，InfiniBand的核心职责包括：
 
 ### 1. 提供高带宽、低延迟的传输通道
@@ -28,7 +28,7 @@ InfiniBand是一种高性能、低延迟的网络通信协议和硬件架构，�
 
 ---
 
-# 二、NIC（网络接口卡）在RDMA中的职责
+# 二、NIC（网络接口卡）
 在 RDMA场景中，NIC通常指支持RDMA的智能网卡（如 RoCE（RDMA over Converged Ethernet）或 iWARP 网卡）。其核心职责包括：
 
 ### 1. 在以太网上实现RDMA
