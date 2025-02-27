@@ -4,7 +4,7 @@ collection: parallel-computing
 permalink: /parallel-computing/parallel-computing-04
 excerpt: ' '
 date: 2025-02-27
-citation: 'Joe-Bi. (2025). &quot;RDMA技术原理与实现浅析.&quot; <i>GitHub Joe-Bi of Bugs</i>'
+citation: 'Joe-Bi. (2025). &quot;RDMA技术原理与实现浅析.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
 # RDMA技术原理与实现解析
