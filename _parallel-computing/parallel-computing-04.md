@@ -7,7 +7,6 @@ date: 2025-02-27
 citation: 'Joe-Bi. (2025). &quot;RDMA技术原理与实现浅析.&quot; <i>GitHub Joe-Bi of blog</i>'
 ---
    
-# RDMA技术原理与实现解析
 
 ## 1. RDMA基本概念  
 - &zwnj;**定义**&zwnj;：RDMA（Remote Direct Memory Access）允许计算机直接存取另一台计算机内存的技术，绕过操作系统和CPU介入，减少延迟并提升通信效率。  
