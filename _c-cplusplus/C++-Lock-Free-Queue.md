@@ -81,12 +81,12 @@ private:
         qNode(void) : next(nullptr) { }
         qNode(ElemType elem) : elem(elem), next(nullptr) { }
         ElemType       elem;
-        struct qNode* next;
+        std::atomic<struct qNode*> next;
     }Node;
 
 private:
-    Node* head; 
-    Node* tail;
+     std::atomic<Node*> head;
+	 std::atomic<Node*> tail;
 };
 
 template<typename ElemType>
@@ -107,34 +107,43 @@ QueueCAS<ElemType>::~QueueCAS(void) {
 template<typename ElemType>
 void QueueCAS<ElemType>::enqueue(ElemType elem) {
     Node* newNode = new Node(elem);
+	Node* oldtail;
+	Node* next;
 
-    Node* p = tail;
-    Node* oldtail = tail;
-    Node* pNull(nullptr);
-
-    do {
-        while (p->next != nullptr)
-            p = p->next;
-    } while (atomic_compare_exchange_weak((std::atomic<Node*>*)(&p->next), (Node**)(&pNull), newNode) != true);
-
-    atomic_compare_exchange_weak((std::atomic<Node*>*)(&tail), (Node**)(&oldtail), newNode);
+	do {
+		oldtail = tail.load();
+		next = oldtail->next.load();
+		if (oldtail != tail.load())
+			continue;
+		
+		if (next != nullptr) {
+			atomic_compare_exchange_weak(&tail, (std::atomic<Node*>*) (&oldtail), next);
+			continue;
+		}
+	} while (atomic_compare_exchange_weak(&(oldtail->next), (std::atomic<Node*>*) (&next), newNode) != true);
+	
+	atomic_compare_exchange_weak((std::atomic<Node*>*)(&tail), (Node**)(&oldtail), newNode);
 }
 
 template<typename ElemType>
 ElemType QueueCAS<ElemType>::dequeue(void) {
-    Node* p;
-    do {
-        p = head->next;
-        if (p == nullptr)
-            return ElemType(0);
-    } while (atomic_compare_exchange_weak((std::atomic<Node*>*)(&head->next), (Node**)&p, p->next) != true);
+    Node* oldHead;
+	Node* next;
+	do {
+		oldHead = head.load();
+		Node* oldTail = tail.load();
+		next = oldHead->next.load();
+		if(oldHead != head.load())
+			continue;
+	
+		if (oldHead == oldTail && next == nullptr)
+			return  ElemType(0);
+	
+	} while (atomic_compare_exchange_weak(&head, (std::atomic<Node*>*)(&oldHead), next) != true);
 
-    Node* expected = p;
-    atomic_compare_exchange_weak((std::atomic<Node*>*)(&tail), (Node**)&expected, head);  // when expected is not equal to tail, they swap 
-
-    ElemType val = p->elem;
-    p->next = nullptr;
-    delete p;
+	ElemType val = oldHead->elem;
+	oldHead->next = nullptr;
+	delete oldHead;
 
     return val;
 }
