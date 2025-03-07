@@ -111,18 +111,20 @@ void QueueCAS<ElemType>::enqueue(ElemType elem) {
 	Node* next;
 
 	do {
-		oldtail = tail.load();
-		next = oldtail->next.load();
-		if (oldtail != tail.load())
+		oldtail = tail.load(std::memory_order_acquire);
+		next = oldtail->next.load(std::memory_order_acquire);
+		if (oldtail != tail.load(std::memory_order_relaxed))
 			continue;
-		
+    
 		if (next != nullptr) {
-			atomic_compare_exchange_weak(&tail, (std::atomic<Node*>*) (&oldtail), next);
+			Node* expected = oldtail;
+			tail.atomic_compare_exchange_weak(expected, next, std::memory_order_release, std::memory_order_relaxed);
 			continue;
 		}
-	} while (atomic_compare_exchange_weak(&(oldtail->next), (std::atomic<Node*>*) (&next), newNode) != true);
-	
-	atomic_compare_exchange_weak((std::atomic<Node*>*)(&tail), (Node**)(&oldtail), newNode);
+	} while (!oldtail->next.atomic_compare_exchange_weak(next, newNode, std::memory_order_release, std::memory_order_relaxed));
+
+	Node* expected = oldtail;
+	tail.compare_exchange_weak(expected, newNode, std::memory_order_release, std::memory_order_relaxed);
 }
 
 template<typename ElemType>
@@ -130,16 +132,18 @@ ElemType QueueCAS<ElemType>::dequeue(void) {
     Node* oldHead;
 	Node* next;
 	do {
-		oldHead = head.load();
-		Node* oldTail = tail.load();
-		next = oldHead->next.load();
-		if(oldHead != head.load())
+		oldHead = head.load(std::memory_order_acquire);
+		Node* oldTail = tail.load(std::memory_order_acquire);
+		next = oldHead->next.load(std::memory_order_acquire);
+		if(oldHead != head.load(std::memory_order_relaxed))
 			continue;
-	
-		if (oldHead == oldTail && next == nullptr)
+
+		if (oldHead == oldTail && next == nullptr) {
+			throw std::runtime_error("Queue is empty");
 			return  ElemType(0);
-	
-	} while (atomic_compare_exchange_weak(&head, (std::atomic<Node*>*)(&oldHead), next) != true);
+		}
+
+	} while (!head.atomic_compare_exchange_weak(oldHead, next, std::memory_order_release, std::memory_order_relaxed));
 
 	ElemType val = oldHead->elem;
 	oldHead->next = nullptr;
