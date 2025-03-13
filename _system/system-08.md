@@ -25,9 +25,9 @@ citation: 'Joe-Bi. (2025). &quot;几种读写锁的实现方式以及读写锁�
 #include <pthread.h>
 
 typedef struct {
-    int readers;			 // 记录当前读者的数量
-    int writers;			 // 记录当前写者的数量（通常为 0 或 1）
-    spinlock_t lock;		 // 自旋锁，用于保护共享数据
+    int readers;	     // 记录当前读者的数量
+    int writers;	     // 记录当前写者的数量（通常为 0 或 1）
+    spinlock_t lock;	     // 自旋锁，用于保护共享数据
     struct condvar read_cv;  // 读者条件变量
     struct condvar write_cv; // 写者条件变量
 } rwlock_t;
@@ -75,7 +75,7 @@ void rwlock_write_unlock(rwlock_t *rwlock) {
 ## 2. 基于互斥锁和条件变量的实现
 这种实现方式使用普通的互斥锁（Mutex）来保护共享数据，条件变量用于线程之间的同步。互斥锁在获取锁时可能会导致线程阻塞，适用于锁竞争较为激烈、持有锁时间较长的场景。
 
-使用互斥锁和条件变量又有三种实现方式：
+使用互斥锁和条件变量又有三种实现方式：‌<br  />
 a) 两个mutex  
 b) 一个mutex + 一个Condition Variable  
 c) 一个mutex + 两个个Condition Variable  
@@ -126,23 +126,23 @@ void write_unlock(rwlock_t *rwlock) {
 
 ```
 原理与特点‌
-1. ‌核心机制‌
-‌	 读锁流程‌：
-	第一个读线程通过write_mtx.lock()阻止后续写线程‌。
-	后续读线程直接增加readers计数器，共享读权限‌。
+1. ‌核心机制‌‌<br  />
+‌	 读锁流程‌：‌<br  />
+	第一个读线程通过write_mtx.lock()阻止后续写线程‌。‌<br  />
+	后续读线程直接增加readers计数器，共享读权限‌。‌<br  />
 	最后一个读线程释放write_mtx，允许写线程获取锁‌。
 ‌	
-	写锁流程‌：
-	写线程先标记write_pending = true，阻止新读线程启动‌。
-	通过write_mtx.lock()等待所有活跃读线程完成‌。
-    ‌<br  />
-2. ‌特性‌
-‌   读优先: 新读线程可抢占写锁请求（write_pending标记后仍允许读）。‌
-‌   写线程饥饿风险: 高并发读场景下，写线程可能因write_pending无法及时生效而长期等待‌。
-   ‌死锁风险‌: 必须严格保证锁顺序：read_mtx先于write_mtx‌‌。
-    ‌<br  />
-3. ‌适用场景
-‌   读多写极少‌：例如日志系统，允许读线程快速抢占资源。
+	写锁流程‌：‌<br  />
+	写线程先标记write_pending = true，阻止新读线程启动‌。‌<br  />
+	通过write_mtx.lock()等待所有活跃读线程完成‌。‌<br  />
+
+2. ‌特性‌‌<br  />
+‌   读优先: 新读线程可抢占写锁请求（write_pending标记后仍允许读）。‌<br  />‌
+‌   写线程饥饿风险: 高并发读场景下，写线程可能因write_pending无法及时生效而长期等待‌。‌<br  />
+   ‌死锁风险‌: 必须严格保证锁顺序：read_mtx先于write_mtx‌‌。‌<br  />
+
+3. ‌适用场景‌<br  />
+‌   读多写极少‌：例如日志系统，允许读线程快速抢占资源。‌<br  />
    ‌低写优先级‌：不要求写操作必须及时执行。‌
 
 ### 2.2 一个mutex + 一个Condition Variable实现
@@ -199,12 +199,12 @@ void write_unlock(rwlock_t *rwlock) {
 }
 
 ```
-特性‌
-    1. 唤醒策略‌: notify_all可能导致读/写线程竞争
-    2. ‌公平性控制‌: 需依赖计数器逻辑判断，易导致写线程
+特性‌‌<br  />
+    1. 唤醒策略‌: notify_all可能导致读/写线程竞争‌<br  />
+    2. ‌公平性控制‌: 需依赖计数器逻辑判断，易导致写线程‌<br  />
     3. 性能损耗‌: 频繁无效唤醒增加上下文切换开销‌
 
-适用场景‌
+适用场景‌‌<br  />
 ‌	单条件变量适合低并发场景或读/写操作频率相近的应用（如低频配置更新）。
 
 ### 2.3 一个mutex + 两个Condition Variable实现
@@ -263,12 +263,12 @@ void write_unlock(rwlock_t* rwlock) {
 
 
 ```
-特性
-	‌1. 唤醒策略: 通过独立条件变量实现精确唤醒‌
-    2. 公平性控制‌: 写线程优先唤醒，避免饥饿
+特性‌<br  />
+	‌1. 唤醒策略: 通过独立条件变量实现精确唤醒‌<br  />‌
+    2. 公平性控制‌: 写线程优先唤醒，避免饥饿‌<br  />
     ‌3. 性能损耗‌: 减少无效唤醒，提升高并发性能‌
 
-‌适用场景
+‌适用场景‌<br  />
 	‌双条件变量‌适用于高并发读写场景（如数据库缓存），需严格避免写线程饥饿‌
 
 ---
