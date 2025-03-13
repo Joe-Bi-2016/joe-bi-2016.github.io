@@ -1,7 +1,7 @@
 ---
 title: "几种读写锁的实现方式以及读写锁与RCU比较"
-collection: parallel-computing
-permalink: /parallel-computing/parallel-computing-06
+collection: system
+permalink: /system/system-08
 excerpt: ' '
 date: 2025-03-13
 citation: 'Joe-Bi. (2025). &quot;几种读写锁的实现方式以及读写锁与RCU比较.&quot; <i>GitHub Joe-Bi of blog</i>'
