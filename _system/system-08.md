@@ -24,7 +24,7 @@ citation: 'Joe-Bi. (2025). &quot;几种读写锁的实现方式以及读写锁�
 ```
 #include <pthread.h>
 
-typedef struct {
+typedef struct rwlock{
     int readers;	     // 记录当前读者的数量
     int writers;	     // 记录当前写者的数量（通常为 0 或 1）
     spinlock_t lock;	     // 自旋锁，用于保护共享数据
@@ -85,7 +85,7 @@ c) 一个mutex + 两个个Condition Variable
 ```
 #include <mutex>
 
-typedef struct {
+typedef struct rwlock{
     std::mutex read_mtx;    	// 保护读计数器和写锁请求状态
     std::mutex write_mtx;   	// 写操作的排他锁
     int readers = 0;        	// 当前活跃读线程数
@@ -150,7 +150,7 @@ void write_unlock(rwlock_t *rwlock) {
 #include <mutex>
 #include <condition_variable>
 
-typedef struct {
+typedef struct rwlock{
     std::mutex mtx;
     std::condition_variable cv;
     int readers = 0;          	// 当前活跃读线程数
@@ -161,7 +161,7 @@ typedef struct {
 void read_lock(rwlock_t *rwlock) {
     std::unique_lock<std::mutex> lock(rwlock->mtx);
     // 等待条件：无活跃写线程且无写线程等待（避免写线程饥饿）
-    rwlock->cv.wait(lock, [this] { 
+    rwlock->cv.wait(lock, [&rwlock] { 
         return !rwlock->writer_active && rwlock->writers_waiting == 0; 
     });
     rwlock->readers++;
@@ -180,7 +180,7 @@ void write_lock(rwlock_t *rwlock) {
     std::unique_lock<std::mutex> lock(rwlock->mtx);
     rwlock->writers_waiting++;
     // 等待条件：无活跃读/写线程‌
-    rwlock->cv.wait(lock, [this] { 
+    rwlock->cv.wait(lock, [&rwlock] { 
         return rwlock->readers == 0 && !rwlock->writer_active; 
     });
     rwlock->writers_waiting--;
@@ -212,7 +212,7 @@ void write_unlock(rwlock_t *rwlock) {
 #include <mutex>
 #include <condition_variable>
 
-typedef struct {
+typedef struct rwlock{
 private:
     std::mutex mtx;
     std::condition_variable read_cv, write_cv;
@@ -224,7 +224,7 @@ private:
 void read_lock(rwlock_t* rwlock) {
     std::unique_lock<std::mutex> lock(rwlock->mtx);
     // 等待条件：无活跃写线程‌
-    rwlock->read_cv.wait(lock, [this] { 
+    rwlock->read_cv.wait(lock, [&rwlock] { 
         return !rwlock->writer_active; 
     });
     rwlock->readers++;
@@ -243,7 +243,7 @@ void write_lock(rwlock_t* rwlock) {
     std::unique_lock<std::mutex> lock(rwlock->mtx);
     rwlock->writers_waiting++;
     // 等待条件：无活跃读/写线程‌
-    rwlock->write_cv.wait(lock, [this] { 
+    rwlock->write_cv.wait(lock, [&rwlock] { 
         return rwlock->readers == 0 && !rwlock->writer_active; 
     });
     rwlock->writers_waiting--;
