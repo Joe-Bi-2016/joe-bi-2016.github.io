@@ -130,7 +130,7 @@ void write_unlock(rwlock_t *rwlock) {
 ‌	 读锁流程‌：‌<br  />
 	第一个读线程通过write_mtx.lock()阻止后续写线程‌。‌<br  />
 	后续读线程直接增加readers计数器，共享读权限‌。‌<br  />
-	最后一个读线程释放write_mtx，允许写线程获取锁‌。
+	最后一个读线程释放write_mtx，允许写线程获取锁‌。‌<br  />
 ‌	
 	写锁流程‌：‌<br  />
 	写线程先标记write_pending = true，阻止新读线程启动‌。‌<br  />
