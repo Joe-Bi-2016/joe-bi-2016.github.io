@@ -27,89 +27,92 @@ RCU的核心是读者在读取数据时不需要锁，写者更新数据时生�
 
 代码如下：
 ```
-#include <iostream>
-#include <thread>
 #include <atomic>
-#include <vector>
+#include <memory>
 #include <mutex>
-#include <chrono>
+#include <vector>
 
-// 定义一个简单的数据结构
-struct Data {
-    int value;
-    Data(int v) : value(v) {}
+template<typename T>
+class SimpleRCU {
+private:
+    std::atomic<std::shared_ptr<T>> current_data;
+    std::vector<std::shared_ptr<T>> garbage;
+    std::atomic<int> readers{0};
+    std::mutex write_mutex;
+
+public:
+    explicit SimpleRCU(std::shared_ptr<T> init) : current_data(init) {}
+
+    // 读者访问（无锁）
+    std::shared_ptr<T> read() {
+        readers.fetch_add(1, std::memory_order_relaxed);
+        std::atomic_thread_fence(std::memory_order_acquire);
+        auto ptr = current_data.load(std::memory_order_relaxed);
+        readers.fetch_sub(1, std::memory_order_relaxed);
+        return ptr;
+    }
+
+    // 写者更新
+    void write(auto&& updater) {
+        std::lock_guard<std::mutex> lock(write_mutex);
+        
+        // 1. 复制新数据
+        auto new_data = std::make_shared<T>(*current_data);
+        updater(*new_data);
+        
+        // 2. 原子替换指针
+        auto old_data = current_data.exchange(new_data);
+        
+        // 3. 等待当前读者退出
+        synchronize_rcu();
+        
+        // 4. 安全回收旧数据
+        garbage.push_back(old_data);
+        garbage.erase(
+            std::remove_if(garbage.begin(), garbage.end(),
+                [](auto& ptr) { return ptr.use_count() == 1; }),
+            garbage.end());
+    }
+	
+	void synchronize_rcu() {
+		while (readers.load() > 0) {
+            std::this_thread::yield();
+        }
+	}
 };
 
-// 全局共享数据指针
-std::atomic<Data*> sharedData;
-
-// 写锁和读锁计数器
-std::mutex writeMutex;
-std::atomic<int> readCount(0);
-
-// 模拟 RCU 的优雅周期
-void synchronizeRCU() {
-    // 等待所有读者完成
-    while (readCount.load() > 0) {
-        std::this_thread::yield();
-    }
-}
-
-// 读操作
-void reader() {
-    // 增加读者计数
-    readCount.fetch_add(1, std::memory_order_relaxed);
-
-    // 读取共享数据
-    Data* data = sharedData.load(std::memory_order_acquire);
-    if (data) {
-        std::cout << "Reader read value: " << data->value << std::endl;
-    }
-
-    // 减少读者计数
-    readCount.fetch_sub(1, std::memory_order_relaxed);
-}
-
-// 写操作
-void writer(int newValue) {
-    // 加写锁
-    std::lock_guard<std::mutex> lock(writeMutex);
-
-    // 创建新的数据副本
-    Data* newData = new Data(newValue);
-
-    // 原子地更新共享数据指针
-    Data* oldData = sharedData.exchange(newData, std::memory_order_release);
-
-    // 等待所有读者完成（优雅周期）
-    synchronizeRCU();
-
-    // 释放旧数据
-    delete oldData;
-}
+// 使用示例
+struct Config {
+    int value = 0;
+    std::string name = "default";
+};
 
 int main() {
-    // 初始化共享数据
-    sharedData.store(new Data(0), std::memory_order_release);
-
-    // 创建多个读者和写者线程
-    std::vector<std::thread> threads;
-    for (int i = 0; i < 5; ++i) {
-        threads.emplace_back(reader);
-    }
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    threads.emplace_back(writer, 10);
-
-    // 等待所有线程完成
-    for (auto& thread : threads) {
-        thread.join();
-    }
-
-    // 释放最后一个共享数据
-    delete sharedData.load();
-
+    SimpleRCU<Config> rcu(std::make_shared<Config>());
+    
+    // 读者线程
+    auto reader = [&] {
+        auto data = rcu.read();
+        printf("Read value: %d, name: %s\n", 
+               data->value, data->name.c_str());
+    };
+    
+    // 写者线程
+    auto writer = [&] {
+        rcu.write([](Config& cfg) {
+            cfg.value++;
+            cfg.name = "updated_" + std::to_string(cfg.value);
+        });
+    };
+    
+    std::thread t1(reader);
+    std::thread t2(reader);
+    std::thread t3(writer);
+    
+    t1.join();
+    t2.join();
+    t3.join();
+    
     return 0;
 }
 ```
