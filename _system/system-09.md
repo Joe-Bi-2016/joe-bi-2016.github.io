@@ -65,7 +65,7 @@ private:
 	std::mutex write_mutex;
 	volatile long rcu_Idx;
 	
-	std::atomic<int> rcu_threads;
+	std::atomic<int> rcu_threads;		// 统计线程数
 	
 	thread_local int rcu_Refcnt[2];		// 防止读者让写者饥饿
 	thread_local int rcu_nesting;		// 递归次数，允许嵌套lock()
@@ -79,6 +79,16 @@ public:
 		rcu_readIdx = 0；
 	}
 	
+	void threadsAdd() {
+		std::atomic_thread_fence(std::memory_order_acquire);
+		rcu_threads.fetch_add(1, std::memory_order_relaxed);
+	}
+	
+	void threadsSub() {
+		std::atomic_thread_fence(std::memory_order_acquire);
+		rcu_threads.fetch_sub(1, std::memory_order_relaxed);
+	}
+	
 	void rcu_lock() {
 		if (rcu_nesting == 0) {
 			rcu_readIdx = rcu_readIdx & 0x1;
@@ -86,7 +96,7 @@ public:
 		}
 		
 		rcu_nesting++;
-		rcu_threads.fetch_add(1, std::memory_order_relaxed);
+		
 		std::atomic_thread_fence(std::memory_order_release);
 	}
 	
@@ -96,8 +106,7 @@ public:
 			rcu_Refcnt[rcu_readIdx]--;
 		}
 		
-		rcu_nesting--;
-		rcu_threads.fetch_sub(1, std::memory_order_relaxed);	
+		rcu_nesting--;	
 		std::atomic_thread_fence(std::memory_order_release);
 	}
 	
@@ -174,17 +183,21 @@ int main() {
     
     // 读者线程
     auto reader = [&] {
+		rcu.threadsAdd();
         auto data = rcu.read();
         printf("Read value: %d, name: %s\n", 
                data->value, data->name.c_str());
+		rcu.threadsSub();
     };
     
     // 写者线程
     auto writer = [&] {
+		rcu.threadsAdd();
         rcu.write([](Config& cfg) {
             cfg.value++;
             cfg.name = "updated_" + std::to_string(cfg.value);
         });
+		rcu.threadsSub();
     };
     
     std::thread t1(reader);
