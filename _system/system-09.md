@@ -90,13 +90,13 @@ public:
 	}
 	
 	void rcu_lock() {
+		std::atomic_thread_fence(std::memory_order_acquire);
 		if (rcu_nesting == 0) {
-			rcu_readIdx = rcu_readIdx & 0x1;
+			rcu_readIdx = rcu_Idx & 0x1;
 			rcu_Refcnt[rcu_readIdx]++;
 		}
 		
 		rcu_nesting++;
-		
 		std::atomic_thread_fence(std::memory_order_release);
 	}
 	
