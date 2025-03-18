@@ -79,12 +79,12 @@ public:
 		rcu_readIdx = 0；
 	}
 	
-	void threadsAdd() {
+	void readThreadsAdd() {
 		std::atomic_thread_fence(std::memory_order_acquire);
 		rcu_threads.fetch_add(1, std::memory_order_relaxed);
 	}
 	
-	void threadsSub() {
+	void readThreadsSub() {
 		std::atomic_thread_fence(std::memory_order_acquire);
 		rcu_threads.fetch_sub(1, std::memory_order_relaxed);
 	}
@@ -144,7 +144,7 @@ public:
     // 读者访问（无锁）
     std::shared_ptr<T> read() {
 		rcu_lock();
-        auto ptr = current_data.load(std::memory_order_relaxed);
+		auto ptr = current_data.load(std::memory_order_relaxed);
 		rcu_unlock();
 		return ptr;
     }
@@ -161,8 +161,7 @@ public:
 		garbage.push_back(old_data);
 		
         // 3. 等待当前读者退出
-        if(!synchronize_rcu())
-			return;
+        if(!synchronize_rcu()) return;
   
         // 4. 安全回收旧数据
         garbage.erase(
@@ -183,21 +182,19 @@ int main() {
     
     // 读者线程
     auto reader = [&] {
-		rcu.threadsAdd();
+		rcu.readThreadsAdd();
         auto data = rcu.read();
         printf("Read value: %d, name: %s\n", 
                data->value, data->name.c_str());
-		rcu.threadsSub();
+		rcu.readThreadsSub();
     };
     
     // 写者线程
     auto writer = [&] {
-		rcu.threadsAdd();
         rcu.write([](Config& cfg) {
             cfg.value++;
             cfg.name = "updated_" + std::to_string(cfg.value);
         });
-		rcu.threadsSub();
     };
     
     std::thread t1(reader);
