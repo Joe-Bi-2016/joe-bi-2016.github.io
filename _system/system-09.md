@@ -86,9 +86,7 @@ public:
 		}
 		
 		rcu_nesting++;
-		
 		rcu_threads.fetch_add(1, std::memory_order_relaxed);
-		
 		std::atomic_thread_fence(std::memory_order_release);
 	}
 	
@@ -99,9 +97,7 @@ public:
 		}
 		
 		rcu_nesting--;
-		
-		rcu_threads.fetch_sub(1, std::memory_order_relaxed);
-		
+		rcu_threads.fetch_sub(1, std::memory_order_relaxed);	
 		std::atomic_thread_fence(std::memory_order_release);
 	}
 	
@@ -110,7 +106,7 @@ public:
 		int i = ctr & 0x1;
 		std::atomic_thread_fence(std::memory_order_acquire);
 		// 对每一线程
-		for (int i = 0; i < rcu_threads.load(); ++i) {
+		for (int m = 0; m < rcu_threads.load(); ++m) {
 			while (rcu_Refcnt[i] != 0) {
 				std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			}
