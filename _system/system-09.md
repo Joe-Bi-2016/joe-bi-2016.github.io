@@ -23,7 +23,29 @@ RCU的核心是读者在读取数据时不需要锁，写者更新数据时生�
 一旦宽限期结束，也就意味着所有读线程都已经完成了对旧数据的访问，写线程就可以安全地释放旧数据所占用的内存空间。
 
 ---
-# 二、C++实现的简单RCU举例
+#二、实现RCU应该满足的条件
+1. 必须有读端原语(比如rcu_read_lock()和 rcu_read_unlock())和宽限期原语(比如synchronize_rcu()和call_rcu())，
+任何在宽限期开始前就存在的RCU读端临界区必须在宽限期结束前完毕。‌<br  />
+
+2. RCU读端原语应该有最小的开销。特别是应该避免如高速缓存未命中、原子操作、内存屏障和分支之类的操作。‌<br  />
+
+3. RCU读端原语应该有O(1)的时间复杂度，可以用于实时用途。这意味着读者可以与更新者并发运行。‌<br  />
+
+4. RCU读端原语应该在所有上下文中都可以使用（在Linux内核中，只有空循环时不能使用RCU读端原语）。
+一个重要的特例是RCU读端原语必须可以在RCU读端临界区中使用，换句话说，必须允许RCU读端临界区嵌套。‌<br  />
+
+5. RCU读端原语不应该有条件判断，不会返回失败。这个特性十分重要，因为错误检查会增加复杂度，让测试和验证变得更复杂。‌<br  />
+
+6. 除了静止状态以外的任何操作都能在RCU读端原语里执行。比如像I/O这样的不幂等（non-idempotent）的操作也该允许。‌<br  />
+
+7. 应该允许在RCU读端临界区中执行的同时更新一个受RCU保护的数据结构。‌<br  />
+
+8. RCU读端和更新端的原语应该在内存分配器的设计和实现上独立，换句话说，同样的RCU实现应该能在不管数据原语是分配还是释放的同时保护该数据元素。‌<br  />
+
+9. RCU宽限期不应该被在RCU读端临界区之外阻塞的线程而阻塞。
+
+---
+# 三、C++实现的简单RCU举例
 
 代码如下：
 ```
@@ -31,54 +53,118 @@ RCU的核心是读者在读取数据时不需要锁，写者更新数据时生�
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 template<typename T>
 class SimpleRCU {
 private:
     std::atomic<std::shared_ptr<T>> current_data;
     std::vector<std::shared_ptr<T>> garbage;
-    std::atomic<int> readers{0};
-    std::mutex write_mutex;
+	
+	std::mutex write_mutex;
+	volatile long rcu_Idx;
+	
+	std::atomic<int> rcu_threads;
+	
+	thread_local int rcu_Refcnt[2];		// 防止读者让写者饥饿
+	thread_local int rcu_nesting;		// 递归次数，允许嵌套lock()
+    thread_local int rcu_readIdx;		// 写更新时使用
 
 public:
-    explicit SimpleRCU(std::shared_ptr<T> init) : current_data(init) {}
+    explicit SimpleRCU(std::shared_ptr<T> init) : current_data(init), rcu_threads(0) {
+		rcu_Idx = 0；
+		rcu_Refcnt[0] = rcu_Refcnt[1] = 0;
+		rcu_nesting = 0;
+		rcu_readIdx = 0；
+	}
+	
+	void rcu_lock() {
+		if (rcu_nesting == 0) {
+			rcu_readIdx = rcu_readIdx & 0x1;
+			rcu_Refcnt[rcu_readIdx]++;
+		}
+		
+		rcu_nesting++;
+		
+		rcu_threads.fetch_add(1, std::memory_order_relaxed);
+		
+		std::atomic_thread_fence(std::memory_order_release);
+	}
+	
+	void rcu_unlock() {
+		std::atomic_thread_fence(std::memory_order_acquire);
+		if (rcu_nesting == 1) {
+			rcu_Refcnt[rcu_readIdx]--;
+		}
+		
+		rcu_nesting--;
+		
+		rcu_threads.fetch_sub(1, std::memory_order_relaxed);
+		
+		std::atomic_thread_fence(std::memory_order_release);
+	}
+	
+	void flip_counter_and_wait(int ctr) {
+		rcu_Idx = ctr + 1;
+		int i = ctr & 0x1;
+		std::atomic_thread_fence(std::memory_order_acquire);
+		// 对每一线程
+		for (int i = 0; i < rcu_threads.load(); ++i) {
+			while (rcu_Refcnt[i] != 0) {
+				std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			}
+		}
+	}
+	
+	bool synchronize_rcu() {
+		std::atomic_thread_fence(std::memory_order_acquire);
+		int oldctr = rcu_Idx;
+		std::atomic_thread_fence(std::memory_order_acquire);
+		
+		std::lock_guard<std::mutex> lock(write_mutex);
+		if ((rcu_Idx - oldctr) >= 3) {
+			std::atomic_thread_fence(std::memory_order_release);
+			return false;
+		}
+		
+		flip_counter_and_wait(rcu_Idx);
+		if (rcu_Idx - oldctr) < 2)
+			flip_counter_and_wait(rcu_Idx + 1);
+		
+		std::atomic_thread_fence(std::memory_order_release);
+		return true;
+	}
 
     // 读者访问（无锁）
     std::shared_ptr<T> read() {
-        readers.fetch_add(1, std::memory_order_relaxed);
-        std::atomic_thread_fence(std::memory_order_acquire);
+		rcu_lock();
         auto ptr = current_data.load(std::memory_order_relaxed);
-        readers.fetch_sub(1, std::memory_order_relaxed);
-        return ptr;
+		rcu_unlock();
+		return ptr;
     }
 
     // 写者更新
     void write(auto&& updater) {
-        std::lock_guard<std::mutex> lock(write_mutex);
-        
         // 1. 复制新数据
         auto new_data = std::make_shared<T>(*current_data);
         updater(*new_data);
         
         // 2. 原子替换指针
         auto old_data = current_data.exchange(new_data);
-        
+        // 将旧的数据记录到队列中
+		garbage.push_back(old_data);
+		
         // 3. 等待当前读者退出
-        synchronize_rcu();
-        
+        if(!synchronize_rcu())
+			return;
+  
         // 4. 安全回收旧数据
-        garbage.push_back(old_data);
         garbage.erase(
             std::remove_if(garbage.begin(), garbage.end(),
                 [](auto& ptr) { return ptr.use_count() == 1; }),
             garbage.end());
     }
-	
-	void synchronize_rcu() {
-		while (readers.load() > 0) {
-            std::this_thread::yield();
-        }
-	}
 };
 
 // 使用示例
@@ -118,7 +204,7 @@ int main() {
 ```
 
 ---
-# 三、RCU宽限期
+# 四、RCU宽限期
 
 RCU是一种以牺牲一定数据一致性来换取高并发性能的同步机制。它并不保证所有读线程在同一时刻看到相同的数据状态。在写操作更新共享数据后，由于指针的原子更新，后续开始的读操作会看到新数据，而在写操作更新指针之前就已经开始的读操作会继续使用旧数据。这种 “不一致性” 是有意为之的，因为它避免了读写锁机制中读操作和写操作之间的互斥等待，使得读操作可以无锁进行，从而提高了系统的并发性能。<br  />
 
@@ -133,7 +219,7 @@ RCU是一种以牺牲一定数据一致性来换取高并发性能的同步机�
 宽限期允许读线程和写线程在一定程度上并发执行。读线程不需要等待写操作完成，写线程也不需要等待所有读线程都开始执行。只要在宽限期内所有读线程都能完成对旧数据的访问，就可以保证数据的安全性和一致性，从而提高了系统的并发性能。
 
 ---
-# 四、关键特性
+# 五、关键特性
 
 #### 1. RCU是读/写锁的替代者
 Linux内核中RCU最常见的用途就是在读占大多数时间的情况下替换读/写锁。<br  />
@@ -188,7 +274,7 @@ RCU的强大之处，其中之一就是允许你在等待上千个不同事物�
 | 旧数据回收 |	引用计数+定期清理  | 延迟回收	   |
 
 ---
-# 五、适用场景
+# 六、适用场景
 ‌- **配置热更新‌**：需要频繁读取但极少修改的全局配置<br  />‌
 ‌- **统计计数器**‌：高频读取，允许短暂计数不一致的统计场景<br  />‌
 ‌- **只读缓存系统**‌：缓存版本切换时无需立即失效旧数据<br  />‌
