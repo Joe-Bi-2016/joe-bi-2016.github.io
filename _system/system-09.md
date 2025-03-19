@@ -127,7 +127,8 @@ public:
 		int oldctr = rcu_Idx;
 		std::lock_guard<std::mutex> lock(write_mutex);
 		
-		if ((rcu_Idx - oldctr) >= 3) {
+		// 最多只有3个线程在等待计数变为0
+		if ((rcu_Idx - oldctr) >= 3) { 
 			std::atomic_thread_fence(std::memory_order_release);
 			return false;
 		}
