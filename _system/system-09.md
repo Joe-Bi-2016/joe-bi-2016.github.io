@@ -23,7 +23,7 @@ RCU的核心是读者在读取数据时不需要锁，写者更新数据时生�
 一旦宽限期结束，也就意味着所有读线程都已经完成了对旧数据的访问，写线程就可以安全地释放旧数据所占用的内存空间。
 
 ---
-#二、实现RCU应该满足的条件
+# 二、实现RCU应该满足的条件
 1. 必须有读端原语(比如rcu_read_lock()和 rcu_read_unlock())和宽限期原语(比如synchronize_rcu()和call_rcu())，
 任何在宽限期开始前就存在的RCU读端临界区必须在宽限期结束前完毕。‌<br  />
 
@@ -125,9 +125,8 @@ public:
 	bool synchronize_rcu() {
 		std::atomic_thread_fence(std::memory_order_acquire);
 		int oldctr = rcu_Idx;
-		std::atomic_thread_fence(std::memory_order_acquire);
-		
 		std::lock_guard<std::mutex> lock(write_mutex);
+		
 		if ((rcu_Idx - oldctr) >= 3) {
 			std::atomic_thread_fence(std::memory_order_release);
 			return false;
