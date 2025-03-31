@@ -125,7 +125,6 @@ public:
 	bool synchronize_rcu() {
 		std::atomic_thread_fence(std::memory_order_acquire);
 		int oldctr = rcu_Idx;
-		std::lock_guard<std::mutex> lock(write_mutex);
 		
 		// 最多只有3个线程在等待计数变为0
 		if ((rcu_Idx - oldctr) >= 3) { 
@@ -157,6 +156,9 @@ public:
         
         // 2. 原子替换指针
         auto old_data = current_data.exchange(new_data);
+		
+		std::lock_guard<std::mutex> lock(write_mutex);
+		
         // 将旧的数据记录到队列中
 		garbage.push_back(old_data);
 		
